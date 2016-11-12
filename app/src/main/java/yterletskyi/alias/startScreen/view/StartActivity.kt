@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
+import yterletskyi.alias.settingsScreen.view.SettingsActivity
 import yterletskyi.alias.startScreen.presenter.StartPresenter
 
 class StartActivity : AppCompatActivity(), StartView {
@@ -15,8 +17,9 @@ class StartActivity : AppCompatActivity(), StartView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        ButterKnife.bind(this)
         mStartPresenter = StartPresenter(this)
+        ButterKnife.bind(this)
+
     }
 
     override fun showGame() {
@@ -25,8 +28,7 @@ class StartActivity : AppCompatActivity(), StartView {
     }
 
     override fun showSettings() {
-        Log.i(TAG, "showSettings: ")
-        // TODO: 09.11.16 go to Settings Activity
+        ActivityStarter().start(this, SettingsActivity::class.java, false)
     }
 
     @OnClick(R.id.btn_game)
