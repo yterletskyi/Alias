@@ -2,7 +2,6 @@ package yterletskyi.alias.settingsScreen.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.R
@@ -17,10 +16,12 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         setContentView(R.layout.activity_settings)
         ButterKnife.bind(this)
         mPresenter = SettingsPresenter(this)
+        mPresenter!!.onCreate()
     }
 
     @OnClick(R.id.btn_go_setup_teams)
     fun onSetupTeamsBtnClicked() {
+        mPresenter!!.showSetupTeamsScreen()
     }
 
     @OnClick(R.id.btn_save)
@@ -33,6 +34,22 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
     }
 
     override fun save() {
-        Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()
+        mPresenter!!.save()
+    }
+
+    override fun setEndTime(minutes: Int, seconds: Int) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun setEndScore(scores: Int) {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun getEndTime(): Int {
+        throw UnsupportedOperationException("not implemented")
+    }
+
+    override fun getEndScore(): Int {
+        throw UnsupportedOperationException("not implemented")
     }
 }

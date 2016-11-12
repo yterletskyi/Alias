@@ -18,14 +18,14 @@ class SharedPreferencesManager(context: Context?) {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    fun saveGameLengthTime(seconds: Long) {
+    fun saveGameLengthTime(seconds: Int) {
         val editor = mSharedPreferences!!.edit()
-        editor.putLong(GAME_TIME_LENGTH_KEY, seconds)
+        editor.putInt(GAME_TIME_LENGTH_KEY, seconds)
         editor.apply()
     }
 
-    fun getGameLengthTime(): Long {
-        return mSharedPreferences!!.getLong(GAME_TIME_LENGTH_KEY, 0L);
+    fun getGameLengthTime(): Int {
+        return mSharedPreferences!!.getInt(GAME_TIME_LENGTH_KEY, 0);
     }
 
     fun saveGameFinishScore(seconds: Int) {

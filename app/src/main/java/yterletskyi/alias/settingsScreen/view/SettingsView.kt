@@ -9,4 +9,12 @@ interface SettingsView {
 
     fun save()
 
+    fun setEndTime(minutes: Int, seconds: Int)
+
+    fun setEndScore(scores: Int)
+
+    fun getEndTime(): Int
+
+    fun getEndScore(): Int
+
 }
