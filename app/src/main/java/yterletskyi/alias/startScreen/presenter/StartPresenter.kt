@@ -1,4 +1,6 @@
-package yterletskyi.alias
+package yterletskyi.alias.startScreen.presenter
+
+import yterletskyi.alias.startScreen.view.StartView
 
 /**
  * Created by yterletskyi on 09.11.16.

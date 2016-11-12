@@ -1,10 +1,12 @@
-package yterletskyi.alias
+package yterletskyi.alias.startScreen.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.R
+import yterletskyi.alias.startScreen.presenter.StartPresenter
 
 class StartActivity : AppCompatActivity(), StartView {
 
