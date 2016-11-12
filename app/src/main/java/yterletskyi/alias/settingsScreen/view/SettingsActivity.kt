@@ -2,12 +2,20 @@ package yterletskyi.alias.settingsScreen.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.SeekBar
+import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.R
 import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
 
 class SettingsActivity : AppCompatActivity(), SettingsView {
+
+    @BindView(R.id.seek_time)
+    lateinit var mTimeSeekBar: SeekBar
+
+    @BindView(R.id.seek_score)
+    lateinit var mScoreSeekbar: SeekBar
 
     var mPresenter: SettingsPresenter? = null
 
@@ -38,18 +46,18 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
     }
 
     override fun setEndTime(minutes: Int, seconds: Int) {
-        throw UnsupportedOperationException("not implemented")
+        mTimeSeekBar!!.progress = seconds
     }
 
     override fun setEndScore(scores: Int) {
-        throw UnsupportedOperationException("not implemented")
+        mScoreSeekbar!!.progress = scores
     }
 
     override fun getEndTime(): Int {
-        throw UnsupportedOperationException("not implemented")
+        return mTimeSeekBar!!.progress
     }
 
     override fun getEndScore(): Int {
-        throw UnsupportedOperationException("not implemented")
+        return mScoreSeekbar!!.progress
     }
 }
