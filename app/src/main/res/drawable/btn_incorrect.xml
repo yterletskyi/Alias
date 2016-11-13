@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="false">
+        <shape
+            android:shape="oval">
+            <solid android:color="@color/not_correct_answer_btn"/>
+            <size
+                android:width="@dimen/btn_answer_diameter"
+                android:height="@dimen/btn_answer_diameter"/>
+        </shape>
+    </item>
+
+    <item android:drawable="@drawable/ic_clear_black_24dp"/>
+
+</layer-list>
