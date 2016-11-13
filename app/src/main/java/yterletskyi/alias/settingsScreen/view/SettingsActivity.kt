@@ -2,6 +2,7 @@ package yterletskyi.alias.settingsScreen.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import android.widget.SeekBar
 import android.widget.TextView
 import butterknife.BindView
@@ -30,10 +31,24 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         ButterKnife.bind(this)
+        addActionBarUpButton();
         mPresenter = SettingsPresenter(this)
         mPresenter!!.onCreate()
         mScoreSeekBar.setOnSeekBarChangeListener(this)
         mTimeSeekBar.setOnSeekBarChangeListener(this)
+    }
+
+    private fun addActionBarUpButton() {
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item!!.itemId
+        if (id == android.R.id.home) {
+            finish()
+            return true
+        }
+        return false
     }
 
     @OnClick(R.id.btn_go_setup_teams)
