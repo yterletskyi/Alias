@@ -50,12 +50,12 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
         super.onDestroy()
     }
 
-    override fun setTimeSeek(minutes: Int, seconds: Int) {
-        mTimeSeekBar.progress = seconds
+    override fun setTimeSeek(position: Int) {
+        mTimeSeekBar.progress = position
     }
 
-    override fun setScoreSeek(scores: Int) {
-        mScoreSeekBar.progress = scores
+    override fun setScoreSeek(position: Int) {
+        mScoreSeekBar.progress = position
     }
 
     override fun setTimeText(time: String) {
@@ -66,12 +66,13 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
         mScoreTxtView.text = scores
     }
 
-    override fun getEndTime(): Int {
-        return mTimeSeekBar.progress
+    override fun getEndTime(): String {
+        return mTimeTxtView.text.toString()
     }
 
     override fun getEndScore(): Int {
-        return mScoreSeekBar.progress
+        val text = mScoreTxtView.text
+        return (text as String).toInt()
     }
 
     override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {

@@ -25,7 +25,7 @@ class SharedPreferencesManager(context: Context?) {
     }
 
     fun getGameLengthTime(): Int {
-        return mSharedPreferences!!.getInt(GAME_TIME_LENGTH_KEY, 0);
+        return mSharedPreferences!!.getInt(GAME_TIME_LENGTH_KEY, 3);
     }
 
     fun saveGameFinishScore(seconds: Int) {
@@ -35,7 +35,7 @@ class SharedPreferencesManager(context: Context?) {
     }
 
     fun getGameFinishScore(): Int {
-        return mSharedPreferences!!.getInt(GAME_FINISH_SCORE_KEY, 0);
+        return mSharedPreferences!!.getInt(GAME_FINISH_SCORE_KEY, 9);
     }
 
 

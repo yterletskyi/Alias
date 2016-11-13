@@ -7,15 +7,15 @@ interface SettingsView {
 
     fun showSetupTeamsScreen()
 
-    fun setTimeSeek(minutes: Int, seconds: Int)
+    fun setTimeSeek(position: Int)
 
-    fun setScoreSeek(scores: Int)
+    fun setScoreSeek(position: Int)
 
     fun setTimeText(time: String)
 
     fun setScoreText(scores: String)
 
-    fun getEndTime(): Int
+    fun getEndTime(): String
 
     fun getEndScore(): Int
 
