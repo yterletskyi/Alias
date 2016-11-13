@@ -1,6 +1,8 @@
 package yterletskyi.alias.settingsScreen.presenter
 
 import android.content.Context
+import android.widget.SeekBar
+import yterletskyi.alias.R
 import yterletskyi.alias.SharedPreferencesManager
 import yterletskyi.alias.settingsScreen.view.SettingsView
 
@@ -33,12 +35,19 @@ class SettingsPresenter(val mView: SettingsView) {
         val secs = mSharedPreferenceManager.getGameLengthTime()
         val minutes = secs / 60
         val seconds = secs % 60
-        mView.setEndTime(minutes, seconds)
+        val time = composeTime(minutes, seconds)
+        mView.setTimeText(time)
+        mView.setTimeSeek(minutes, seconds)
+    }
+
+    private fun composeTime(min: Int, sec: Int): String {
+        return min.toString() + ":" + sec.toString()
     }
 
     private fun setupGameEndScore() {
         val score = mSharedPreferenceManager.getGameFinishScore()
-        mView.setEndScore(score)
+        mView.setScoreSeek(score)
+        mView.setScoreText(score.toString())
     }
 
     private fun saveEndTime() {
@@ -51,4 +60,11 @@ class SettingsPresenter(val mView: SettingsView) {
         mSharedPreferenceManager.saveGameFinishScore(score)
     }
 
+    fun onSeekBarValueChanged(seekBar: SeekBar?, progress: Int) {
+        if (seekBar!!.id == R.id.seek_time) {
+            mView.setTimeText(progress.toString())
+        } else {
+            mView.setScoreText(progress.toString())
+        }
+    }
 }
