@@ -51,7 +51,7 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
     }
 
     override fun setTimeSeek(minutes: Int, seconds: Int) {
-        mTimeSeekBar.setProgress(seconds)
+        mTimeSeekBar.progress = seconds
     }
 
     override fun setScoreSeek(scores: Int) {
@@ -67,7 +67,7 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
     }
 
     override fun getEndTime(): Int {
-        return mTimeSeekBar.getProgress()
+        return mTimeSeekBar.progress
     }
 
     override fun getEndScore(): Int {
