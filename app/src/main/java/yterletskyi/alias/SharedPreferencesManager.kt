@@ -9,10 +9,10 @@ import android.preference.PreferenceManager
  */
 class SharedPreferencesManager(context: Context?) {
 
-    val GAME_TIME_LENGTH_KEY: String = "game_time_length_key"
-    val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
+    private val GAME_TIME_LENGTH_KEY: String = "game_time_length_key"
+    private val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
 
-    var mSharedPreferences: SharedPreferences? = null;
+    private var mSharedPreferences: SharedPreferences? = null;
 
     init {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -36,6 +36,23 @@ class SharedPreferencesManager(context: Context?) {
 
     fun getGameFinishScore(): Int {
         return mSharedPreferences!!.getInt(GAME_FINISH_SCORE_KEY, 9);
+    }
+
+    fun saveTeamsCount(count: Int) {
+        // todo implement
+    }
+
+    fun getTeamsCount(): Int {
+        // todo implement
+        return 2
+    }
+
+    fun getString(key: String): String {
+        return mSharedPreferences!!.getString(key, "")
+    }
+
+    fun getInt(key: String): Int {
+        return mSharedPreferences!!.getInt(key, 0)
     }
 
 

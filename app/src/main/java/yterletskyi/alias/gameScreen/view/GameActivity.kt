@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.view.View
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import butterknife.OnClick
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.presenter.GamePresenter
 
@@ -21,7 +22,7 @@ class GameActivity : AppCompatActivity(), GameView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         ButterKnife.bind(this)
-        mPresenter = GamePresenter(this)
+        mPresenter = GamePresenter(this, this)
         mPresenter!!.onCreate()
         mRootLayout.setOnClickListener { }
     }
@@ -35,4 +36,19 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun setupActionBar(teamName: String) {
         supportActionBar!!.setTitle(teamName)
     }
+
+    override fun setWord(word: String) {
+        (findViewById(R.id.text_word) as TextView).setText(word)
+    }
+
+    @OnClick(R.id.btn_correct_answer)
+    fun onCorrectAnswer() {
+        mPresenter!!.wrongAnswer()
+    }
+
+    @OnClick(R.id.btn_not_correct_answer)
+    fun onNotCorrectAnswer() {
+        mPresenter!!.correctAnswer()
+    }
+
 }

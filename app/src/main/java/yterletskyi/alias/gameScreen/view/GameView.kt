@@ -9,4 +9,6 @@ interface GameView {
 
     fun setupActionBar(teamName: String)
 
+    fun setWord(word: String)
+
 }
