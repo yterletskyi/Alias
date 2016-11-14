@@ -11,4 +11,7 @@ interface GameView {
 
     fun setWord(word: String)
 
+    fun enableButtons()
+
+    fun disableButtons()
 }

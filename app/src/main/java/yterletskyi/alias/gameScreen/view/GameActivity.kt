@@ -51,4 +51,13 @@ class GameActivity : AppCompatActivity(), GameView {
         mPresenter!!.correctAnswer()
     }
 
+    override fun enableButtons() {
+        findViewById(R.id.btn_correct_answer).isEnabled = true;
+        findViewById(R.id.btn_not_correct_answer).isEnabled = true;
+    }
+
+    override fun disableButtons() {
+        findViewById(R.id.btn_correct_answer).isEnabled = false;
+        findViewById(R.id.btn_not_correct_answer).isEnabled = false;
+    }
 }

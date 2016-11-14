@@ -29,7 +29,11 @@ class GamePresenter(context: Context, val mView: GameView) {
     }
 
     private fun enableUi() {
+        mView.enableButtons()
+    }
 
+    private fun disableUi() {
+        mView.disableButtons()
     }
 
     fun correctAnswer() {
