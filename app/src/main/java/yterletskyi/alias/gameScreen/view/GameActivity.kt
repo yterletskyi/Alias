@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -43,7 +45,21 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun setupActionBar(teamName: String) {
-        supportActionBar!!.setTitle(teamName)
+        supportActionBar!!.title = teamName
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menu_game, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId == R.id.item_menu_pause) {
+            mPresenter!!.pause()
+            return true
+        }
+        return false
     }
 
     override fun setWord(word: String) {

@@ -60,4 +60,8 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
         disableUi()
         mView.changeTimerValue(0)
     }
+
+    fun pause() {
+
+    }
 }
