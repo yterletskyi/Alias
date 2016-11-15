@@ -5,7 +5,7 @@ package yterletskyi.alias.gameScreen.model
  */
 interface OnRoundTimeListener {
 
-    fun onSecondElapsed()
+    fun onSecondElapsed(time: Int)
 
     fun onRoundEnded()
 }

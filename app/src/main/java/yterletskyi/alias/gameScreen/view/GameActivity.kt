@@ -13,6 +13,15 @@ import yterletskyi.alias.gameScreen.presenter.GamePresenter
 
 class GameActivity : AppCompatActivity(), GameView {
 
+    @BindView(R.id.text_win_score)
+    lateinit var mWinScoreText: TextView
+
+    @BindView(R.id.text_draw_score)
+    lateinit var mDrawScoreText: TextView
+
+    @BindView(R.id.text_timer_value)
+    lateinit var mTimerValueText: TextView
+
     @BindView(R.id.activity_game)
     lateinit var mRootLayout: ConstraintLayout
 
@@ -59,5 +68,17 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun disableButtons() {
         findViewById(R.id.btn_correct_answer).isEnabled = false;
         findViewById(R.id.btn_not_correct_answer).isEnabled = false;
+    }
+
+    override fun changeTimerValue(time: Int) {
+        mTimerValueText.text = time.toString()
+    }
+
+    override fun setDrawScore(draws: Int) {
+        mDrawScoreText.text = draws.toString()
+    }
+
+    override fun setWinScore(wins: Int) {
+        mWinScoreText.text = wins.toString()
     }
 }

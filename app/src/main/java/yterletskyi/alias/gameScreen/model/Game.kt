@@ -12,6 +12,8 @@ class Game(context: Context) : OnRoundTimeListener {
     private lateinit var mWords: Words
     private var mRound: Round? = null
     private var mCurrentTeam: Team? = null
+    var onRoundEndListener: OnRoundTimeListener? = null
+    private var mGamePreferences: GamePreferences = GamePreferences(context)
 
     init {
         setupTeams(context)
@@ -37,10 +39,12 @@ class Game(context: Context) : OnRoundTimeListener {
     override fun onRoundEnded() {
         mCurrentTeam!!.drawScores = mRound!!.draws
         mCurrentTeam!!.winScores = mRound!!.wins
+        onRoundEndListener!!.onRoundEnded()
         Log.i("info", "round ended")
     }
 
-    override fun onSecondElapsed() {
+    override fun onSecondElapsed(time: Int) {
+        onRoundEndListener!!.onSecondElapsed(time)
         Log.i("info", "one second elapsed")
     }
 
@@ -48,15 +52,20 @@ class Game(context: Context) : OnRoundTimeListener {
         return mCurrentTeam!!
     }
 
-    fun getCurrentWord(): String {
+    fun getNextWord(): String {
         return mWords.nextWord()
     }
 
-    fun correctAnswer() {
-        mRound!!.wins++
+    fun correctAnswer(): Int {
+        return ++mRound!!.wins
     }
 
-    fun wrongAnswer() {
-        mRound!!.draws++
+    fun wrongAnswer(): Int {
+        return ++mRound!!.draws
+    }
+
+    fun getGameLength(): Int {
+        return 15
+//        return mGamePreferences.getGameTime()
     }
 }

@@ -14,4 +14,11 @@ interface GameView {
     fun enableButtons()
 
     fun disableButtons()
+
+    fun changeTimerValue(time: Int)
+
+    fun setDrawScore(draws: Int)
+
+    fun setWinScore(wins: Int)
+
 }

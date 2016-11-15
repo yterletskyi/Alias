@@ -6,7 +6,7 @@ package yterletskyi.alias.gameScreen.model
 class Team(n: String, w: Int, d: Int) {
 
     var name: String = n
-        get() = this.toString()
+        private set
 
     var winScores: Int = w
 
