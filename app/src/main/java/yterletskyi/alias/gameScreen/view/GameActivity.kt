@@ -11,7 +11,9 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.R
+import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.gameScreen.presenter.GamePresenter
+import yterletskyi.alias.gameScreen.view.EndRoundDialog.EndRoundDialog
 
 class GameActivity : AppCompatActivity(), GameView {
 
@@ -84,6 +86,11 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun disableButtons() {
         findViewById(R.id.btn_correct_answer).isEnabled = false;
         findViewById(R.id.btn_not_correct_answer).isEnabled = false;
+    }
+
+    override fun openEndRoundDialog(teamsArrayList: MutableList<Team>) {
+        val dialog = EndRoundDialog(this, teamsArrayList)
+        dialog.show()
     }
 
     override fun changeTimerValue(time: Int) {

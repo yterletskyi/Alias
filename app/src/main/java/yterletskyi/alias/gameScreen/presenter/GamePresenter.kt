@@ -4,6 +4,7 @@ import android.content.Context
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.Game
 import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
+import yterletskyi.alias.gameScreen.view.EndRoundDialog.EndRoundDialog
 import yterletskyi.alias.gameScreen.view.GameView
 
 /**
@@ -57,8 +58,8 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     }
 
     override fun onRoundEnded() {
-        disableUi()
         mView.changeTimerValue(0)
+        mView.openEndRoundDialog(mGame.teamsArrayList)
     }
 
     fun pause() {

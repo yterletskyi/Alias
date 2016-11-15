@@ -9,7 +9,7 @@ class Round(listener: OnRoundTimeListener) {
 
     var wins: Int = 0
     var draws: Int = 0
-    private var mTimer = object : CountDownTimer(16000, 1000) {
+    private var mTimer = object : CountDownTimer(3000, 1000) {
         override fun onFinish() {
             listener.onRoundEnded()
         }

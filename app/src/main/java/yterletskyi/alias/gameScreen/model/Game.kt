@@ -8,7 +8,7 @@ import android.util.Log
  */
 class Game(context: Context) : OnRoundTimeListener {
 
-    private lateinit var mTeamsArrayList: MutableList<Team>
+    lateinit var teamsArrayList: MutableList<Team>
     private lateinit var mWords: Words
     private var mRound: Round? = null
     private var mCurrentTeam: Team? = null
@@ -26,9 +26,9 @@ class Game(context: Context) : OnRoundTimeListener {
 
     private fun setupTeams(context: Context) {
 //        val teamSaver = TeamSaver(context)
-//        mTeamsArrayList = teamSaver.getTeams()
-        mTeamsArrayList = arrayListOf(Team("team1", 0, 0), Team("team2", 0, 0));
-        mCurrentTeam = mTeamsArrayList.get(0)
+//        teamsArrayList = teamSaver.getTeams()
+        teamsArrayList = arrayListOf(Team("team1", 0, 0), Team("team2", 0, 0));
+        mCurrentTeam = teamsArrayList.get(0)
     }
 
     fun start() {
