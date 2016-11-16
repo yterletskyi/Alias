@@ -10,7 +10,7 @@ class Game(context: Context) : OnRoundTimeListener {
 
     lateinit var teamsArrayList: MutableList<Team>
     private lateinit var mWords: Words
-    private var mRound: Round? = null
+    private var mRound: Round = Round((getGameLength() * 1000).toLong(), this)
     private var mCurrentTeam: Team? = null
     var onRoundEndListener: OnRoundTimeListener? = null
     private var mGamePreferences: GamePreferences = GamePreferences(context)
@@ -32,13 +32,20 @@ class Game(context: Context) : OnRoundTimeListener {
     }
 
     fun start() {
-        mRound = Round(this)
-        mRound!!.start()
+        mRound.start()
+    }
+
+    fun pause() {
+        mRound.pause()
+    }
+
+    fun resume() {
+        mRound.resume()
     }
 
     override fun onRoundEnded() {
-        mCurrentTeam!!.drawScores = mRound!!.draws
-        mCurrentTeam!!.winScores = mRound!!.wins
+        mCurrentTeam!!.drawScores = mRound.draws
+        mCurrentTeam!!.winScores = mRound.wins
         onRoundEndListener!!.onRoundEnded()
         Log.i("info", "round ended")
     }
@@ -57,15 +64,19 @@ class Game(context: Context) : OnRoundTimeListener {
     }
 
     fun correctAnswer(): Int {
-        return ++mRound!!.wins
+        return ++mRound.wins
     }
 
     fun wrongAnswer(): Int {
-        return ++mRound!!.draws
+        return ++mRound.draws
     }
 
     fun getGameLength(): Int {
         return 15
 //        return mGamePreferences.getGameTime()
+    }
+
+    fun stop() {
+        mRound.stop()
     }
 }

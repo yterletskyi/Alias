@@ -4,7 +4,6 @@ import android.content.Context
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.Game
 import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
-import yterletskyi.alias.gameScreen.view.EndRoundDialog.EndRoundDialog
 import yterletskyi.alias.gameScreen.view.GameView
 
 /**
@@ -63,6 +62,16 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     }
 
     fun pause() {
+        disableUi()
+        mGame.pause()
+    }
 
+    fun resume() {
+        enableUi()
+        mGame.resume()
+    }
+
+    fun onStop() {
+        mGame.stop()
     }
 }

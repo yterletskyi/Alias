@@ -1,26 +1,38 @@
 package yterletskyi.alias.gameScreen.model
 
-import android.os.CountDownTimer
-
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class Round(listener: OnRoundTimeListener) {
+class Round(time: Long, listener: OnRoundTimeListener) {
 
     var wins: Int = 0
     var draws: Int = 0
-    private var mTimer = object : CountDownTimer(3000, 1000) {
-        override fun onFinish() {
-            listener.onRoundEnded()
+
+    private var mTimer = object : MyTimer(time) {
+
+        override fun onTick(secLeft: Int) {
+            listener.onSecondElapsed(secLeft)
         }
 
-        override fun onTick(millisUntilFinished: Long) {
-            listener.onSecondElapsed((millisUntilFinished / 1000).toInt())
+        override fun onFinish() {
+            listener.onRoundEnded()
         }
     }
 
     fun start() {
         mTimer.start()
+    }
+
+    fun pause() {
+        mTimer.pause()
+    }
+
+    fun resume() {
+        mTimer.resume()
+    }
+
+    fun stop() {
+        mTimer.stop()
     }
 
 }

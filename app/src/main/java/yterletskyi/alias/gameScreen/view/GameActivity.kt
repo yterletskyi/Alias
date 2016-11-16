@@ -29,6 +29,8 @@ class GameActivity : AppCompatActivity(), GameView {
     @BindView(R.id.activity_game)
     lateinit var mRootLayout: ConstraintLayout
 
+    lateinit var mMneu: Menu
+
     var mPresenter: GamePresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +52,11 @@ class GameActivity : AppCompatActivity(), GameView {
         supportActionBar!!.title = teamName
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        mMneu = menu!!
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_game, menu)
@@ -57,8 +64,16 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item!!.itemId == R.id.item_menu_pause) {
+        val itemId = item!!.itemId
+        if (itemId == R.id.item_menu_pause) {
             mPresenter!!.pause()
+            item.isVisible = false
+            mMneu.findItem(R.id.item_menu_resume).isVisible = true
+            return true
+        } else if (itemId == R.id.item_menu_resume) {
+            mPresenter!!.resume()
+            item.isVisible = false
+            mMneu.findItem(R.id.item_menu_pause).isVisible = true
             return true
         }
         return false
@@ -103,5 +118,10 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun setWinScore(wins: Int) {
         mWinScoreText.text = wins.toString()
+    }
+
+    override fun onStop() {
+        mPresenter!!.onStop()
+        super.onStop()
     }
 }
