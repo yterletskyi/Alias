@@ -23,6 +23,8 @@ class EndRoundDialog(context: Context) : Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.dialog_end_round)
 
+        setTitle(R.string.who_won)
+
         val adapter = SimpleTeamsAdapter(context, mTeamList!!)
         val listView = findViewById(R.id.list_teams_end_round) as ListView
 
@@ -33,7 +35,6 @@ class EndRoundDialog(context: Context) : Dialog(context) {
         }
 
         listView.adapter = adapter
-
 
     }
 
