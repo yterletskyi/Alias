@@ -9,7 +9,7 @@ interface GameView {
 
     fun showSnackbar(descrResId: Int, actionResId: Int)
 
-    fun setupActionBar(teamName: String)
+    fun setupActionBarTitle(teamName: String)
 
     fun setWord(word: String)
 
@@ -17,11 +17,11 @@ interface GameView {
 
     fun disableButtons()
 
-    fun changeTimerValue(time: Int)
+    fun changeTimerValue(time: String)
 
-    fun setDrawScore(draws: Int)
+    fun setDrawScore(draws: String)
 
-    fun setWinScore(wins: Int)
+    fun setWinScore(wins: String)
 
     fun openEndRoundDialog(teamsArrayList: MutableList<Team>)
 

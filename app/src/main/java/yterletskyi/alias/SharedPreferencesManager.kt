@@ -9,7 +9,7 @@ import android.preference.PreferenceManager
  */
 class SharedPreferencesManager(context: Context?) {
 
-    private val GAME_TIME_LENGTH_KEY: String = "game_time_length_key"
+    private val ROUND_TIME_LENGTH_KEY: String = "game_time_length_key"
     private val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
 
     private var mSharedPreferences: SharedPreferences? = null;
@@ -20,12 +20,12 @@ class SharedPreferencesManager(context: Context?) {
 
     fun saveGameLengthTime(seconds: Int) {
         val editor = mSharedPreferences!!.edit()
-        editor.putInt(GAME_TIME_LENGTH_KEY, seconds)
+        editor.putInt(ROUND_TIME_LENGTH_KEY, seconds)
         editor.apply()
     }
 
-    fun getGameLengthTime(): Int {
-        return mSharedPreferences!!.getInt(GAME_TIME_LENGTH_KEY, 3);
+    fun getRoundLengthTime(): Int {
+        return mSharedPreferences!!.getInt(ROUND_TIME_LENGTH_KEY, 3);
     }
 
     fun saveGameFinishScore(seconds: Int) {

@@ -1,7 +1,6 @@
 package yterletskyi.alias.gameScreen.model
 
 import android.content.Context
-import android.util.Log
 
 /**
  * Created by yterletskyi on 14.11.16.
@@ -10,10 +9,10 @@ class Game(context: Context) : OnRoundTimeListener {
 
     lateinit var teamsArrayList: MutableList<Team>
     private lateinit var mWords: Words
-    private var mRound: Round = Round((getGameLength() * 1000).toLong(), this)
     private var mCurrentTeam: Team? = null
     var onRoundEndListener: OnRoundTimeListener? = null
     private var mGamePreferences: GamePreferences = GamePreferences(context)
+    private var mRound: Round = Round((getRoundLength() * 1000).toLong(), this)
 
     init {
         setupTeams(context)
@@ -47,12 +46,10 @@ class Game(context: Context) : OnRoundTimeListener {
         mCurrentTeam!!.drawScores = mRound.draws
         mCurrentTeam!!.winScores = mRound.wins
         onRoundEndListener!!.onRoundEnded()
-        Log.i("info", "round ended")
     }
 
     override fun onSecondElapsed(time: Int) {
         onRoundEndListener!!.onSecondElapsed(time)
-        Log.i("info", "one second elapsed")
     }
 
     fun getCurrentTeam(): Team {
@@ -71,9 +68,8 @@ class Game(context: Context) : OnRoundTimeListener {
         return ++mRound.draws
     }
 
-    fun getGameLength(): Int {
-        return 15
-//        return mGamePreferences.getGameTime()
+    fun getRoundLength(): Int {
+        return mGamePreferences.getRoundTime()
     }
 
     fun stop() {

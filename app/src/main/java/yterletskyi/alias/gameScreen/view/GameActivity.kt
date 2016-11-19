@@ -48,7 +48,7 @@ class GameActivity : AppCompatActivity(), GameView {
         }).show()
     }
 
-    override fun setupActionBar(teamName: String) {
+    override fun setupActionBarTitle(teamName: String) {
         supportActionBar!!.title = teamName
     }
 
@@ -108,16 +108,16 @@ class GameActivity : AppCompatActivity(), GameView {
         dialog.show()
     }
 
-    override fun changeTimerValue(time: Int) {
-        mTimerValueText.text = time.toString()
+    override fun changeTimerValue(time: String) {
+        mTimerValueText.text = time
     }
 
-    override fun setDrawScore(draws: Int) {
-        mDrawScoreText.text = draws.toString()
+    override fun setDrawScore(draws: String) {
+        mDrawScoreText.text = draws
     }
 
-    override fun setWinScore(wins: Int) {
-        mWinScoreText.text = wins.toString()
+    override fun setWinScore(wins: String) {
+        mWinScoreText.text = wins
     }
 
     override fun onStop() {
