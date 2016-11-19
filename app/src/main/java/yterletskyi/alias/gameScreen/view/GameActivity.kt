@@ -91,12 +91,12 @@ class GameActivity : AppCompatActivity(), GameView {
 
     @OnClick(R.id.btn_correct_answer)
     fun onCorrectAnswer() {
-        mPresenter!!.wrongAnswer()
+        mPresenter!!.correctAnswer()
     }
 
     @OnClick(R.id.btn_not_correct_answer)
     fun onNotCorrectAnswer() {
-        mPresenter!!.correctAnswer()
+        mPresenter!!.wrongAnswer()
     }
 
     override fun enableButtons() {
