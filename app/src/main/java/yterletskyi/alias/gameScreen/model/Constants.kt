@@ -7,8 +7,7 @@ class Constants {
 
     companion object {
         val SCORE_STEP = 10
-        val TIME_STEP: Int = 15
-
+        val TIME_STEP: Int = 3
     }
 
 }
