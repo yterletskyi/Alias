@@ -25,4 +25,8 @@ interface GameView {
 
     fun openEndRoundDialog(teamsArrayList: MutableList<Team>)
 
+    fun showOptionItem()
+
+    fun hideOptionItem()
+
 }

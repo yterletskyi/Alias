@@ -29,7 +29,7 @@ class GameActivity : AppCompatActivity(), GameView {
     @BindView(R.id.activity_game)
     lateinit var mRootLayout: ConstraintLayout
 
-    lateinit var mMneu: Menu
+    lateinit var mMenu: Menu
 
     var mPresenter: GamePresenter? = null
 
@@ -53,7 +53,7 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        mMneu = menu!!
+        mMenu = menu!!
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -68,12 +68,12 @@ class GameActivity : AppCompatActivity(), GameView {
         if (itemId == R.id.item_menu_pause) {
             mPresenter!!.pause()
             item.isVisible = false
-            mMneu.findItem(R.id.item_menu_resume).isVisible = true
+            mMenu.findItem(R.id.item_menu_resume).isVisible = true
             return true
         } else if (itemId == R.id.item_menu_resume) {
             mPresenter!!.resume()
             item.isVisible = false
-            mMneu.findItem(R.id.item_menu_pause).isVisible = true
+            mMenu.findItem(R.id.item_menu_pause).isVisible = true
             return true
         }
         return false
@@ -118,6 +118,14 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun setWinScore(wins: String) {
         mWinScoreText.text = wins
+    }
+
+    override fun showOptionItem() {
+        mMenu.setGroupVisible(R.id.start_pause_group, true)
+    }
+
+    override fun hideOptionItem() {
+        mMenu.setGroupVisible(R.id.start_pause_group, false)
     }
 
     override fun onStop() {

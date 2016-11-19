@@ -25,7 +25,16 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     fun startGame() {
         setWord()
         enableUi()
+        showOptionItem()
         mGame.start()
+    }
+
+    fun hideOptionItem() {
+        mView.hideOptionItem()
+    }
+
+    fun showOptionItem() {
+        mView.showOptionItem()
     }
 
     private fun setWord() {
@@ -60,6 +69,7 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     }
 
     override fun onRoundEnded() {
+        hideOptionItem()
         mView.changeTimerValue("0")
         mView.openEndRoundDialog(mGame.teamsArrayList)
     }
