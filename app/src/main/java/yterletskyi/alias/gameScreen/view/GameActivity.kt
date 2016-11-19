@@ -121,11 +121,11 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun showOptionItem() {
-        mMenu.setGroupVisible(R.id.start_pause_group, true)
+        mMenu.findItem(R.id.item_menu_pause).isVisible = true
     }
 
     override fun hideOptionItem() {
-        mMenu.setGroupVisible(R.id.start_pause_group, false)
+        mMenu.findItem(R.id.item_menu_pause).isVisible = false
     }
 
     override fun onStop() {
