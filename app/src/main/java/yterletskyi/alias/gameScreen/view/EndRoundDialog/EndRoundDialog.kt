@@ -22,6 +22,7 @@ class EndRoundDialog(context: Context) : Dialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.dialog_end_round)
+        setCancelable(false)
 
         setTitle(R.string.who_gets_the_word)
 
