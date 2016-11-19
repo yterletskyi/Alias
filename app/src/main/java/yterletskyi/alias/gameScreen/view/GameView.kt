@@ -1,5 +1,6 @@
 package yterletskyi.alias.gameScreen.view
 
+import android.support.annotation.IdRes
 import yterletskyi.alias.gameScreen.model.Team
 
 /**
@@ -11,7 +12,7 @@ interface GameView {
 
     fun setupActionBarTitle(teamName: String)
 
-    fun setWord(word: String)
+    fun setWord(word: String, @IdRes animId: Int)
 
     fun enableButtons()
 

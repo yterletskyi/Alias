@@ -38,9 +38,8 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     }
 
     private fun setWord() {
-        // todo add animation here
         val word = mGame.getNextWord()
-        mView.setWord(word)
+        mView.setWord(word, R.anim.fade_in_animation)
     }
 
     private fun enableUi() {
@@ -54,13 +53,13 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     fun correctAnswer() {
         val wins = mGame.correctAnswer()
         mView.setWinScore(wins.toString())
-        mView.setWord(mGame.getNextWord())
+        setWord()
     }
 
     fun wrongAnswer() {
         val draws = mGame.wrongAnswer()
         mView.setDrawScore(draws.toString())
-        mView.setWord(mGame.getNextWord())
+        setWord()
     }
 
     override fun onSecondElapsed(time: Int) {

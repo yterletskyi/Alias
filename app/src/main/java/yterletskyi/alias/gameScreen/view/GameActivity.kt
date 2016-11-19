@@ -1,11 +1,13 @@
 package yterletskyi.alias.gameScreen.view
 
 import android.os.Bundle
+import android.support.annotation.IdRes
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -25,6 +27,9 @@ class GameActivity : AppCompatActivity(), GameView {
 
     @BindView(R.id.text_timer_value)
     lateinit var mTimerValueText: TextView
+
+    @BindView(R.id.text_word)
+    lateinit var mWordTxtView: TextView
 
     @BindView(R.id.activity_game)
     lateinit var mRootLayout: ConstraintLayout
@@ -79,8 +84,9 @@ class GameActivity : AppCompatActivity(), GameView {
         return false
     }
 
-    override fun setWord(word: String) {
-        (findViewById(R.id.text_word) as TextView).setText(word)
+    override fun setWord(word: String, @IdRes animId: Int) {
+        mWordTxtView.startAnimation(AnimationUtils.loadAnimation(this, animId))
+        mWordTxtView.text = word
     }
 
     @OnClick(R.id.btn_correct_answer)
