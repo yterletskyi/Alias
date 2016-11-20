@@ -26,7 +26,12 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
         setWord()
         enableUi()
         showOptionItem()
+        setupTimeProgressBar()
         mGame.start()
+    }
+
+    private fun setupTimeProgressBar() {
+        mView.setMaxTimeProgressBarValue(mGame.getRoundLength())
     }
 
     fun hideOptionItem() {
@@ -65,6 +70,11 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
     override fun onSecondElapsed(time: Int) {
         val timeStr = TimeFormatter().formatTimeStr(time)
         mView.changeTimerValue(timeStr)
+        changeProgressBarValue(time)
+    }
+
+    private fun changeProgressBarValue(time: Int) {
+        mView.changeProgressBarValue(mGame.getRoundLength() - time)
     }
 
     override fun onRoundEnded() {

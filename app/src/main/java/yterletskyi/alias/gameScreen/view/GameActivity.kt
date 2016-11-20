@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
+import android.widget.ProgressBar
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -18,6 +19,9 @@ import yterletskyi.alias.gameScreen.presenter.GamePresenter
 import yterletskyi.alias.gameScreen.view.EndRoundDialog.EndRoundDialog
 
 class GameActivity : AppCompatActivity(), GameView {
+
+    @BindView(R.id.progressBar)
+    lateinit var mTimeProgressBar: ProgressBar
 
     @BindView(R.id.text_win_score)
     lateinit var mWinScoreText: TextView
@@ -44,7 +48,6 @@ class GameActivity : AppCompatActivity(), GameView {
         ButterKnife.bind(this)
         mPresenter = GamePresenter(this, this)
         mPresenter!!.onCreate()
-        mRootLayout.setOnClickListener { }
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {
@@ -55,6 +58,10 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun setupActionBarTitle(teamName: String) {
         supportActionBar!!.title = teamName
+    }
+
+    override fun setMaxTimeProgressBarValue(value: Int) {
+        mTimeProgressBar.max = value
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
@@ -116,6 +123,10 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun changeTimerValue(time: String) {
         mTimerValueText.text = time
+    }
+
+    override fun changeProgressBarValue(time: Int) {
+        mTimeProgressBar.progress = time
     }
 
     override fun setDrawScore(draws: String) {

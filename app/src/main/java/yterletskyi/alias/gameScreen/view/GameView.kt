@@ -30,4 +30,8 @@ interface GameView {
 
     fun hideOptionItem()
 
+    fun setMaxTimeProgressBarValue(value: Int)
+
+    fun changeProgressBarValue(time: Int)
+
 }
