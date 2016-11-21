@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".gameScreen.view.GameActivity">
         </activity>
+        <activity android:name=".setupTeamsScreen.view.SetupTeamsActivity">
+        </activity>
     </application>
 
 </manifest>
