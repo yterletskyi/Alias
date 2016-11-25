@@ -8,8 +8,10 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
 import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
+import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 
 class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarChangeListener {
 
@@ -57,7 +59,7 @@ class SettingsActivity : AppCompatActivity(), SettingsView, SeekBar.OnSeekBarCha
     }
 
     override fun showSetupTeamsScreen() {
-        // TODO: show setup teams screen
+        ActivityStarter().start(this, SetupTeamsActivity::class.java, false)
     }
 
     override fun onDestroy() {
