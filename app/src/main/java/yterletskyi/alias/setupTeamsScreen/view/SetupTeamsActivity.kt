@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import butterknife.ButterKnife
 import yterletskyi.alias.R
 import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamsPresenter
@@ -20,9 +21,10 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         mPresenter.onCreate(this)
     }
 
-    override fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager) {
+    override fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager, touchHelper: ItemTouchHelper) {
         val recyclerView = findViewById(R.id.recycler_view_teams) as RecyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
+        touchHelper.attachToRecyclerView(recyclerView)
     }
 }

@@ -3,5 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="btn_answer_diameter">90dp</dimen>
-    <dimen name="card_corner_radius_material">2</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
 </resources>

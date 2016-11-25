@@ -1,6 +1,7 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.helper.ItemTouchHelper
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -8,6 +9,6 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 interface SetupTeamsView {
 
-    fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager)
+    fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager, touchHelper: ItemTouchHelper)
 
 }
