@@ -10,6 +10,7 @@
     <string name="undo">Undo</string>
 
     <string name="write_team_name">Name a new team</string>
+    <string name="none">None</string>
 
 
 </resources>

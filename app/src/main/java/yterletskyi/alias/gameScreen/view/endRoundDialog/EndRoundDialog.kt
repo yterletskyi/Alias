@@ -1,12 +1,12 @@
-package yterletskyi.alias.gameScreen.view.EndRoundDialog
+package yterletskyi.alias.gameScreen.view.endRoundDialog
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.widget.AdapterView
-import android.widget.ListView
-import android.widget.Toast
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import yterletskyi.alias.R
+import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.Team
 
 /**
@@ -14,6 +14,7 @@ import yterletskyi.alias.gameScreen.model.Team
  */
 class EndRoundDialog(context: Context) : Dialog(context) {
 
+    lateinit var teamSelectListener: OnEndRoundTeamSelectListener
     private var mTeamList: MutableList<Team>? = null
 
     constructor(context: Context, teams: MutableList<Team>) : this(context) {
@@ -23,19 +24,12 @@ class EndRoundDialog(context: Context) : Dialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.dialog_end_round)
         setCancelable(false)
-
         setTitle(R.string.who_gets_the_word)
 
-        val adapter = SimpleTeamsAdapter(context, mTeamList!!)
-        val listView = findViewById(R.id.list_teams_end_round) as ListView
+        val recyclerView = findViewById(R.id.recycler_teams_end_round) as RecyclerView
 
-        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
-            val team = mTeamList!![i]
-            Toast.makeText(context, team.name, Toast.LENGTH_SHORT).show()
-            dismiss()
-        }
-
-        listView.adapter = adapter
+        recyclerView.adapter = SimpleTeamsAdapter(mTeamList!!)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     }
 

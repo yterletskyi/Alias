@@ -16,7 +16,7 @@ import butterknife.OnClick
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.gameScreen.presenter.GamePresenter
-import yterletskyi.alias.gameScreen.view.EndRoundDialog.EndRoundDialog
+import yterletskyi.alias.gameScreen.view.endRoundDialog.EndRoundDialog
 
 class GameActivity : AppCompatActivity(), GameView {
 
@@ -118,6 +118,7 @@ class GameActivity : AppCompatActivity(), GameView {
 
     override fun openEndRoundDialog(teamsArrayList: MutableList<Team>) {
         val dialog = EndRoundDialog(this, teamsArrayList)
+        dialog.teamSelectListener = mPresenter!!
         dialog.show()
     }
 
