@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardBackgroundColor="@color/colorAccent"
-    app:cardCornerRadius="20dp">
+    app:cardCornerRadius="@dimen/card_corner_radius_material">
 
     <TextView
         android:id="@+id/text_team_complex_name"
