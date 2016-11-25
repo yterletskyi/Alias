@@ -34,6 +34,10 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         mPresenter.addTeam()
     }
 
+    override fun showAddTeamDialog(addTeamDialog: AddTeamDialog) {
+        addTeamDialog.show(supportFragmentManager, "addTeamDialog")
+    }
+
     override fun onDestroy() {
         mPresenter.onDestroy(this)
         super.onDestroy()

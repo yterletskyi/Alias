@@ -11,4 +11,6 @@ interface SetupTeamsView {
 
     fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager, touchHelper: ItemTouchHelper)
 
+    fun showAddTeamDialog(addTeamDialog: AddTeamDialog)
+
 }
