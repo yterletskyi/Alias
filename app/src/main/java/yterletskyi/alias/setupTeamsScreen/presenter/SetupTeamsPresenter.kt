@@ -58,7 +58,6 @@ class SetupTeamsPresenter(val mView: SetupTeamsView) : OnAddTeamListener {
 
     override fun onTeamAdded(newTeam: Team) {
         mTeams!!.add(newTeam)
-        val pos = mAdapter!!.itemCount
-        mAdapter!!.notifyItemInserted(pos)
+        mAdapter!!.notifyItemInserted(mAdapter!!.itemCount)
     }
 }
