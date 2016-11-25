@@ -53,7 +53,7 @@ class SettingsPresenter(val mView: SettingsView) {
         val time = mView.getEndTime()
         val secs = timeToSeconds(time)
         val marks = secs / Constants.TIME_STEP - 1
-        mSharedPreferenceManager.saveGameLengthTime(marks)
+        mSharedPreferenceManager.saveRoundLengthTime(marks)
     }
 
     private fun timeToSeconds(time: String): Int {

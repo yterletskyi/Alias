@@ -10,12 +10,11 @@ class GamePreferences(context: Context) {
 
     private val mPrefManager = SharedPreferencesManager(context)
 
-    fun getGameScore(): Int {
+    fun getFinishScore(): Int {
         return (mPrefManager.getGameFinishScore() + 1) * Constants.SCORE_STEP
     }
 
     fun getRoundTime(): Int {
         return (mPrefManager.getRoundLengthTime() + 1) * Constants.TIME_STEP
     }
-
 }

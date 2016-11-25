@@ -11,10 +11,11 @@ class TeamSaver(context: Context) {
     private val KEY_NAME: String = "team_name"
     private val KEY_WINS: String = "wins_name"
     private val KEY_DRAW: String = "draws_name"
+    private val TEAMS_COUNT_KEY: String = "teams_count"
     private val mPrefManager: SharedPreferencesManager = SharedPreferencesManager(context)
 
     fun saveTeams(teams: MutableList<Team>) {
-        mPrefManager.saveTeamsCount(teams.size)
+        saveTeamsCount(teams.size)
         for (i in 0..teams.size - 1) {
             saveTeam(teams[i], i)
         }
@@ -36,14 +37,18 @@ class TeamSaver(context: Context) {
         mPrefManager.putInt(team.drawScores, KEY_DRAW + index.toString())
     }
 
-    private fun getTeamsCount(): Int {
-        return mPrefManager.getTeamsCount()
-    }
-
     private fun getTeam(i: Int): Team {
         val name = mPrefManager.getString(KEY_NAME + i.toString())
         val wins = mPrefManager.getInt(KEY_WINS + i.toString())
         val draws = mPrefManager.getInt(KEY_DRAW + i.toString())
         return Team(name, wins, draws)
+    }
+
+    fun saveTeamsCount(count: Int) {
+        mPrefManager.putInt(count, TEAMS_COUNT_KEY)
+    }
+
+    private fun getTeamsCount(): Int {
+        return mPrefManager.getInt(TEAMS_COUNT_KEY)
     }
 }
