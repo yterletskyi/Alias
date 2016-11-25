@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="btn_answer_diameter">90dp</dimen>
     <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="btn_add_team_diameter">56dp</dimen>
 </resources>

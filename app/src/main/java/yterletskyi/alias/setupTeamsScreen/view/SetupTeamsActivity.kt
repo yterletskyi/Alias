@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import butterknife.ButterKnife
+import butterknife.OnClick
 import yterletskyi.alias.R
 import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamsPresenter
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
@@ -26,6 +27,11 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = layoutManager
         touchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    @OnClick(R.id.btn_add_team)
+    fun addTeam() {
+        mPresenter.addTeam()
     }
 
     override fun onDestroy() {

@@ -42,4 +42,8 @@ class SetupTeamsPresenter(val mView: SetupTeamsView) {
         val teamSaver = TeamSaver(context)
         teamSaver.saveTeams(mTeams!!)
     }
+
+    fun addTeam() {
+
+    }
 }
