@@ -27,4 +27,9 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         recyclerView.layoutManager = layoutManager
         touchHelper.attachToRecyclerView(recyclerView)
     }
+
+    override fun onDestroy() {
+        mPresenter.onDestroy(this)
+        super.onDestroy()
+    }
 }

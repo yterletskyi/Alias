@@ -5,6 +5,10 @@ package yterletskyi.alias.gameScreen.model
  */
 class Team(n: String, w: Int, d: Int) {
 
+    constructor(n: String) : this(n, 0, 0) {
+        name = n
+    }
+
     var name: String = n
         private set
 

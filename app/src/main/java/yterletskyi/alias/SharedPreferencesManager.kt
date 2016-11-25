@@ -11,6 +11,7 @@ class SharedPreferencesManager(context: Context?) {
 
     private val ROUND_TIME_LENGTH_KEY: String = "game_time_length_key"
     private val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
+    private val TEAMS_COUNT_KEY: String = "teams_count"
 
     private var mSharedPreferences: SharedPreferences? = null;
 
@@ -39,12 +40,19 @@ class SharedPreferencesManager(context: Context?) {
     }
 
     fun saveTeamsCount(count: Int) {
-        // todo implement
+        val editor = mSharedPreferences!!.edit()
+        editor.putInt(TEAMS_COUNT_KEY, count)
+        editor.apply()
     }
 
     fun getTeamsCount(): Int {
-        // todo implement
-        return 2
+        return mSharedPreferences!!.getInt(TEAMS_COUNT_KEY, 0)
+    }
+
+    fun putString(str: String, key: String) {
+        val editor = mSharedPreferences!!.edit()
+        editor.putString(key, str)
+        editor.apply()
     }
 
     fun getString(key: String): String {
@@ -53,6 +61,12 @@ class SharedPreferencesManager(context: Context?) {
 
     fun getInt(key: String): Int {
         return mSharedPreferences!!.getInt(key, 0)
+    }
+
+    fun putInt(value: Int, s: String) {
+        val editor = mSharedPreferences!!.edit()
+        editor.putInt(s, value)
+        editor.apply()
     }
 
 
