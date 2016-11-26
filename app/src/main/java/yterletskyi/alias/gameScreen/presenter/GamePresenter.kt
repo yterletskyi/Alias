@@ -6,6 +6,7 @@ import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Game
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
+import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.gameScreen.view.GameView
 
 /**
@@ -84,7 +85,11 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
         mView.openEndRoundDialog(mGame.teamsArrayList)
     }
 
-    override fun onTeamSelected() {
+    override fun onTeamSelected(team: Team) {
+
+    }
+
+    override fun onNoneSelected() {
 
     }
 

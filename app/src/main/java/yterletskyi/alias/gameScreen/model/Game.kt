@@ -24,9 +24,8 @@ class Game(context: Context) : OnRoundTimeListener {
     }
 
     private fun setupTeams(context: Context) {
-//        val teamSaver = TeamSaver(context)
-//        teamsArrayList = teamSaver.getTeams()
-        teamsArrayList = arrayListOf(Team("team1", 0, 0), Team("team2", 0, 0));
+        val teamSaver = TeamSaver(context)
+        teamsArrayList = teamSaver.getTeams()
         mCurrentTeam = teamsArrayList.get(0)
     }
 

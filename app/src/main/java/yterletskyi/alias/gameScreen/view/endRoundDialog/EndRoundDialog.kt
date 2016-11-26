@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.Toast
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.Team
@@ -12,7 +13,7 @@ import yterletskyi.alias.gameScreen.model.Team
 /**
  * Created by yterletskyi on 15.11.16.
  */
-class EndRoundDialog(context: Context) : Dialog(context) {
+class EndRoundDialog(context: Context) : Dialog(context), OnEndRoundTeamSelectListener {
 
     lateinit var teamSelectListener: OnEndRoundTeamSelectListener
     private var mTeamList: MutableList<Team>? = null
@@ -28,9 +29,18 @@ class EndRoundDialog(context: Context) : Dialog(context) {
 
         val recyclerView = findViewById(R.id.recycler_teams_end_round) as RecyclerView
 
-        recyclerView.adapter = SimpleTeamsAdapter(mTeamList!!)
+        val adapter = SimpleTeamsAdapter(mTeamList!!)
+        adapter.onEndRoundTeamSelectListener = this
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
     }
 
+    override fun onTeamSelected(team: Team) {
+        Toast.makeText(context, team.name, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onNoneSelected() {
+        Toast.makeText(context, "None", Toast.LENGTH_SHORT).show()
+        dismiss()
+    }
 }
