@@ -12,48 +12,45 @@ class SharedPreferencesManager(context: Context?) {
     private val ROUND_TIME_LENGTH_KEY: String = "game_time_length_key"
     private val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
 
-    private var mSharedPreferences: SharedPreferences? = null;
+    private val mSharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    init {
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
-
-    fun saveGameLengthTime(seconds: Int) {
-        val editor = mSharedPreferences!!.edit()
+    fun saveRoundLengthTime(seconds: Int) {
+        val editor = mSharedPreferences.edit()
         editor.putInt(ROUND_TIME_LENGTH_KEY, seconds)
         editor.apply()
     }
 
     fun getRoundLengthTime(): Int {
-        return mSharedPreferences!!.getInt(ROUND_TIME_LENGTH_KEY, 3);
+        return mSharedPreferences.getInt(ROUND_TIME_LENGTH_KEY, 3);
     }
 
     fun saveGameFinishScore(seconds: Int) {
-        val editor = mSharedPreferences!!.edit()
+        val editor = mSharedPreferences.edit()
         editor.putInt(GAME_FINISH_SCORE_KEY, seconds)
         editor.apply()
     }
 
     fun getGameFinishScore(): Int {
-        return mSharedPreferences!!.getInt(GAME_FINISH_SCORE_KEY, 9);
+        return mSharedPreferences.getInt(GAME_FINISH_SCORE_KEY, 9);
     }
 
-    fun saveTeamsCount(count: Int) {
-        // todo implement
-    }
-
-    fun getTeamsCount(): Int {
-        // todo implement
-        return 2
+    fun putString(str: String, key: String) {
+        val editor = mSharedPreferences.edit()
+        editor.putString(key, str)
+        editor.apply()
     }
 
     fun getString(key: String): String {
-        return mSharedPreferences!!.getString(key, "")
+        return mSharedPreferences.getString(key, "")
     }
 
     fun getInt(key: String): Int {
-        return mSharedPreferences!!.getInt(key, 0)
+        return mSharedPreferences.getInt(key, 0)
     }
 
-
+    fun putInt(value: Int, s: String) {
+        val editor = mSharedPreferences.edit()
+        editor.putInt(s, value)
+        editor.apply()
+    }
 }

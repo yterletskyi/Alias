@@ -4,13 +4,14 @@ import android.content.Context
 import yterletskyi.alias.R
 import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Game
+import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
 import yterletskyi.alias.gameScreen.view.GameView
 
 /**
  * Created by yterletskyi on 13.11.16.
  */
-class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener {
+class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSelectListener {
 
     private var mGame: Game = Game(context)
 
@@ -81,6 +82,10 @@ class GamePresenter(context: Context, val mView: GameView) : OnRoundTimeListener
         hideOptionItem()
         mView.changeTimerValue("0")
         mView.openEndRoundDialog(mGame.teamsArrayList)
+    }
+
+    override fun onTeamSelected() {
+
     }
 
     fun pause() {
