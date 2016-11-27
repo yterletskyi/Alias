@@ -50,7 +50,7 @@ class GameActivity : AppCompatActivity(), GameView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         ButterKnife.bind(this)
-        mPresenter.onCreate()
+        mPresenter.onCreate(intent)
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {

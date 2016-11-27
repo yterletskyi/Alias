@@ -9,9 +9,11 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
 import yterletskyi.alias.endRoundScreen.presenter.EndRoundPresenter
 import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.gameScreen.view.GameActivity
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 class EndRoundActivity : AppCompatActivity(), EndRoundView {
@@ -62,5 +64,9 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
 
     override fun setDraws(drawScores: Int) {
         mCurrentTeamDrawsTxtView.text = drawScores.toString()
+    }
+
+    override fun startGameActivity(data: Bundle) {
+        ActivityStarter().start(this, GameActivity::class.java, true, data)
     }
 }

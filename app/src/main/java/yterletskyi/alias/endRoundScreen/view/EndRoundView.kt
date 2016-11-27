@@ -1,5 +1,6 @@
 package yterletskyi.alias.endRoundScreen.view
 
+import android.os.Bundle
 import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
@@ -18,4 +19,5 @@ interface EndRoundView {
 
     fun setDraws(drawScores: Int)
 
+    fun startGameActivity(data: Bundle)
 }

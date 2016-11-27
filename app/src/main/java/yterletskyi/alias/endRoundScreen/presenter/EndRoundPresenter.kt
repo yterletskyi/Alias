@@ -1,6 +1,7 @@
 package yterletskyi.alias.endRoundScreen.presenter
 
 import android.content.Intent
+import android.os.Bundle
 import yterletskyi.alias.endRoundScreen.view.EndRoundView
 import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
@@ -10,13 +11,14 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 class EndRoundPresenter(private val mView: EndRoundView) {
 
+    private var mCurrentTeamIndex: Int = 0
     private lateinit var mTeams: MutableList<Team>
 
     fun onCreate(intent: Intent) {
         mTeams = mView.getGamePreferences().getTeamSaver().getTeams()
-        val currentTeamIndex = intent.getIntExtra("CurrentTeamIndex", -1)
-        setupTeamTxtView(mTeams[currentTeamIndex])
-        setupTeamsRecyclerView(currentTeamIndex)
+        mCurrentTeamIndex = intent.getIntExtra("CurrentTeamIndex", -1)
+        setupTeamTxtView(mTeams[mCurrentTeamIndex])
+        setupTeamsRecyclerView(mCurrentTeamIndex)
     }
 
     private fun setupTeamsRecyclerView(currentTeamIndex: Int) {
@@ -41,7 +43,13 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     }
 
     fun nextRound() {
+        showGameActivity()
+    }
 
+    private fun showGameActivity() {
+        val data = Bundle()
+        data.putInt("CurrentTeamIndex", ++mCurrentTeamIndex)
+        mView.startGameActivity(data)
     }
 
 
