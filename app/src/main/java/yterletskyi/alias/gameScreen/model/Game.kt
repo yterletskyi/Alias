@@ -35,8 +35,6 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
     }
 
     override fun onRoundEnded() {
-        mCurrentTeam!!.drawScores = mRound.draws
-        mCurrentTeam!!.winScores = mRound.wins
         onRoundEndListener!!.onRoundEnded()
     }
 
@@ -53,11 +51,11 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
     }
 
     fun correctAnswer(): Int {
-        return ++mRound.wins
+        return ++mCurrentTeam!!.winScores
     }
 
     fun wrongAnswer(): Int {
-        return ++mRound.draws
+        return ++mCurrentTeam!!.drawScores
     }
 
     fun getRoundLength(): Int {
