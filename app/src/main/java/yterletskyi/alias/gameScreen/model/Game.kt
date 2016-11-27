@@ -1,32 +1,24 @@
 package yterletskyi.alias.gameScreen.model
 
-import android.content.Context
-
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class Game(context: Context) : OnRoundTimeListener {
+class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTimeListener {
 
     lateinit var teamsArrayList: MutableList<Team>
-    private lateinit var mWords: Words
+    private val mWords: Words = Words(words)
     private var mCurrentTeam: Team? = null
     var onRoundEndListener: OnRoundTimeListener? = null
-    private var mGamePreferences: GamePreferences = GamePreferences(context)
+    private var mGamePreferences: GamePreferences = gamePreferences
     private var mRound: Round = Round((getRoundLength() * 1000).toLong(), this)
 
     init {
-        setupTeams(context)
-        setupWords(context)
+        setupTeams()
     }
 
-    private fun setupWords(context: Context) {
-        mWords = Words(context.resources)
-    }
-
-    private fun setupTeams(context: Context) {
-//        val teamSaver = TeamSaver(context)
-//        teamsArrayList = teamSaver.getTeams()
-        teamsArrayList = arrayListOf(Team("team1", 0, 0), Team("team2", 0, 0));
+    private fun setupTeams() {
+        val teamSaver = mGamePreferences.getTeamSaver()
+        teamsArrayList = teamSaver.getTeams()
         mCurrentTeam = teamsArrayList.get(0)
     }
 
@@ -43,8 +35,6 @@ class Game(context: Context) : OnRoundTimeListener {
     }
 
     override fun onRoundEnded() {
-        mCurrentTeam!!.drawScores = mRound.draws
-        mCurrentTeam!!.winScores = mRound.wins
         onRoundEndListener!!.onRoundEnded()
     }
 
@@ -61,11 +51,11 @@ class Game(context: Context) : OnRoundTimeListener {
     }
 
     fun correctAnswer(): Int {
-        return ++mRound.wins
+        return ++mCurrentTeam!!.winScores
     }
 
     fun wrongAnswer(): Int {
-        return ++mRound.draws
+        return ++mCurrentTeam!!.drawScores
     }
 
     fun getRoundLength(): Int {

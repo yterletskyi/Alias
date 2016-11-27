@@ -1,6 +1,7 @@
 package yterletskyi.alias.gameScreen.view
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.support.annotation.IdRes
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
@@ -14,6 +15,7 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.R
+import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.gameScreen.presenter.GamePresenter
 import yterletskyi.alias.gameScreen.view.endRoundDialog.EndRoundDialog
@@ -40,19 +42,18 @@ class GameActivity : AppCompatActivity(), GameView {
 
     lateinit var mMenu: Menu
 
-    var mPresenter: GamePresenter? = null
+    val mPresenter: GamePresenter = GamePresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         ButterKnife.bind(this)
-        mPresenter = GamePresenter(this, this)
-        mPresenter!!.onCreate()
+        mPresenter.onCreate()
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {
         Snackbar.make(mRootLayout, descrResId, Snackbar.LENGTH_INDEFINITE).setAction(actionResId, {
-            mPresenter!!.startGame()
+            mPresenter.startGame()
         }).show()
     }
 
@@ -78,12 +79,12 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val itemId = item!!.itemId
         if (itemId == R.id.item_menu_pause) {
-            mPresenter!!.pause()
+            mPresenter.pause()
             item.isVisible = false
             mMenu.findItem(R.id.item_menu_resume).isVisible = true
             return true
         } else if (itemId == R.id.item_menu_resume) {
-            mPresenter!!.resume()
+            mPresenter.resume()
             item.isVisible = false
             mMenu.findItem(R.id.item_menu_pause).isVisible = true
             return true
@@ -98,31 +99,31 @@ class GameActivity : AppCompatActivity(), GameView {
 
     @OnClick(R.id.btn_correct_answer)
     fun onCorrectAnswer() {
-        mPresenter!!.correctAnswer()
+        mPresenter.answerCorrect()
     }
 
     @OnClick(R.id.btn_not_correct_answer)
     fun onNotCorrectAnswer() {
-        mPresenter!!.wrongAnswer()
+        mPresenter.answerWrong()
     }
 
     override fun enableButtons() {
-        findViewById(R.id.btn_correct_answer).isEnabled = true;
-        findViewById(R.id.btn_not_correct_answer).isEnabled = true;
+        findViewById(R.id.btn_correct_answer).isEnabled = true
+        findViewById(R.id.btn_not_correct_answer).isEnabled = true
     }
 
     override fun disableButtons() {
-        findViewById(R.id.btn_correct_answer).isEnabled = false;
-        findViewById(R.id.btn_not_correct_answer).isEnabled = false;
+        findViewById(R.id.btn_correct_answer).isEnabled = false
+        findViewById(R.id.btn_not_correct_answer).isEnabled = false
     }
 
     override fun openEndRoundDialog(teamsArrayList: MutableList<Team>) {
         val dialog = EndRoundDialog(this, teamsArrayList)
-        dialog.teamSelectListener = mPresenter!!
+        dialog.teamSelectListener = mPresenter
         dialog.show()
     }
 
-    override fun changeTimerValue(time: String) {
+    override fun setTimerValue(time: String) {
         mTimerValueText.text = time
     }
 
@@ -146,8 +147,17 @@ class GameActivity : AppCompatActivity(), GameView {
         mMenu.findItem(R.id.item_menu_pause).isVisible = false
     }
 
+    override fun getResArray(resId: Int): Array<String> {
+        return resources.getStringArray(resId)
+    }
+
+    override fun getGamePreferences(): GamePreferences {
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+        return GamePreferences(sharedPrefs)
+    }
+
     override fun onStop() {
-        mPresenter!!.onStop()
+        mPresenter.onStop()
         super.onStop()
     }
 }

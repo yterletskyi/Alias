@@ -1,12 +1,7 @@
 package yterletskyi.alias.setupTeamsScreen.presenter
 
-import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.helper.ItemTouchHelper
 import yterletskyi.alias.gameScreen.model.Team
-import yterletskyi.alias.gameScreen.model.TeamSaver
 import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
-import yterletskyi.alias.setupTeamsScreen.model.SimpleItemTouchHelperCallback
 import yterletskyi.alias.setupTeamsScreen.view.AddTeamDialog
 import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsView
 
@@ -19,30 +14,27 @@ class SetupTeamsPresenter(val mView: SetupTeamsView) : OnAddTeamListener {
     private var mAdapter: TeamAdapter? = null
     private var mTeams: MutableList<Team>? = null
 
-    fun onCreate(context: Context) {
-        getTeams(context)
-        populateTeamsRecyclerView(context)
+    fun onCreate() {
+        getTeams()
+        populateTeamsRecyclerView()
     }
 
-    private fun getTeams(context: Context) {
-        val teamSaver = TeamSaver(context)
+    private fun getTeams() {
+        val teamSaver = mView.getGamePreferences().getTeamSaver()
         mTeams = teamSaver.getTeams()
     }
 
-    private fun populateTeamsRecyclerView(context: Context) {
+    private fun populateTeamsRecyclerView() {
         mAdapter = TeamAdapter(mTeams!!)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        val callback = SimpleItemTouchHelperCallback(mAdapter!!)
-        val touchHelper = ItemTouchHelper(callback)
-        mView.setupRecyclerView(mAdapter!!, layoutManager, touchHelper)
+        mView.setupRecyclerView(mAdapter!!)
     }
 
-    fun onDestroy(context: Context) {
-        saveTeams(context)
+    fun onDestroy() {
+        saveTeams()
     }
 
-    private fun saveTeams(context: Context) {
-        val teamSaver = TeamSaver(context)
+    private fun saveTeams() {
+        val teamSaver = mView.getGamePreferences().getTeamSaver()
         teamSaver.saveTeams(mTeams!!)
     }
 

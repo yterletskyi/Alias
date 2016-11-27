@@ -1,7 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.helper.ItemTouchHelper
+import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -9,8 +8,10 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 interface SetupTeamsView {
 
-    fun setupRecyclerView(adapter: TeamAdapter, layoutManager: LinearLayoutManager, touchHelper: ItemTouchHelper)
+    fun setupRecyclerView(adapter: TeamAdapter)
 
     fun showAddTeamDialog(addTeamDialog: AddTeamDialog)
+
+    fun getGamePreferences(): GamePreferences
 
 }
