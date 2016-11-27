@@ -25,7 +25,9 @@ class TeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<TeamAdap
     override fun onBindViewHolder(holder: TeamViewHolder?, position: Int) {
         val team = mTeams[position]
 
-        holder!!.mTeamNameTxtView.text = team.name
+        holder!!.nameTxtView.text = team.name
+        holder.winsTxtView.text = team.winScores.toString()
+        holder.drawsTxtView.text = team.drawScores.toString()
     }
 
     override fun getItemCount(): Int {
@@ -56,10 +58,16 @@ class TeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<TeamAdap
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @BindView(R.id.text_team_complex_name)
-        lateinit var mTeamNameTxtView: TextView
+        @BindView(R.id.text_wins)
+        lateinit var winsTxtView: TextView
 
-        @BindView(R.id.text_team_comples_undo)
+        @BindView(R.id.text_draws)
+        lateinit var drawsTxtView: TextView
+
+        @BindView(R.id.text_team_complex_name)
+        lateinit var nameTxtView: TextView
+
+        @BindView(R.id.text_team_complex_undo)
         lateinit var mUndoTxtView: TextView
 
         init {
