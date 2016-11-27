@@ -12,6 +12,10 @@ interface EndRoundView {
 
     fun setupTeamsRecyclerView(adapter: TeamAdapter)
 
-    fun getGamePreferences() : GamePreferences
+    fun getGamePreferences(): GamePreferences
+
+    fun setWins(winScores: Int)
+
+    fun setDraws(drawScores: Int)
 
 }

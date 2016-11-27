@@ -16,6 +16,12 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 class EndRoundActivity : AppCompatActivity(), EndRoundView {
 
+    @BindView(R.id.text_cur_team_wins)
+    lateinit var mCurrentTeamWinsTxtView: TextView
+
+    @BindView(R.id.text_cur_team_draws)
+    lateinit var mCurrentTeamDrawsTxtView: TextView
+
     @BindView(R.id.text_team_name_current)
     lateinit var mCurrentTeamNameTxtView: TextView
 
@@ -48,5 +54,13 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
     override fun getGamePreferences(): GamePreferences {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         return GamePreferences(sharedPrefs)
+    }
+
+    override fun setWins(winScores: Int) {
+        mCurrentTeamWinsTxtView.text = winScores.toString()
+    }
+
+    override fun setDraws(drawScores: Int) {
+        mCurrentTeamDrawsTxtView.text = drawScores.toString()
     }
 }
