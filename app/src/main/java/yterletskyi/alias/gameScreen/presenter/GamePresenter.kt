@@ -1,5 +1,6 @@
 package yterletskyi.alias.gameScreen.presenter
 
+import android.os.Bundle
 import yterletskyi.alias.R
 import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Game
@@ -85,10 +86,17 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     override fun onTeamSelected(team: Team) {
         team.winScores++
+        startEndRoundActivity()
     }
 
     override fun onNoneSelected() {
+        startEndRoundActivity()
+    }
 
+    private fun startEndRoundActivity() {
+        val data = Bundle()
+        data.putInt("CurrentTeamIndex", mGame.getCurrentTeamIndex())
+        mView.showEndRoundActivity(data)
     }
 
     fun pause() {

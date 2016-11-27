@@ -65,4 +65,8 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
     fun stop() {
         mRound.stop()
     }
+
+    fun getCurrentTeamIndex(): Int {
+        return teamsArrayList.indexOf(mCurrentTeam)
+    }
 }
