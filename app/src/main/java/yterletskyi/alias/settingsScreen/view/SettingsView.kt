@@ -1,5 +1,7 @@
 package yterletskyi.alias.settingsScreen.view
 
+import yterletskyi.alias.gameScreen.model.GamePreferences
+
 /**
  * Created by yterletskyi on 12.11.16.
  */
@@ -18,5 +20,7 @@ interface SettingsView {
     fun getEndTime(): String
 
     fun getEndScore(): Int
+
+    fun getGamePreferences(): GamePreferences
 
 }

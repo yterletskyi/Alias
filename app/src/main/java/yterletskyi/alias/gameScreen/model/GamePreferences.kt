@@ -1,20 +1,44 @@
 package yterletskyi.alias.gameScreen.model
 
-import android.content.Context
+import android.content.SharedPreferences
 import yterletskyi.alias.SharedPreferencesManager
 
 /**
  * Created by yterletskyi on 15.11.16.
  */
-class GamePreferences(context: Context) {
+class GamePreferences(sharedPreferences: SharedPreferences) {
 
-    private val mPrefManager = SharedPreferencesManager(context)
+    private val ROUND_TIME_LENGTH_KEY: String = "game_time_length_key"
+    private val GAME_FINISH_SCORE_KEY: String = "game_finish_score_key"
+
+    private val mPrefManager = SharedPreferencesManager(sharedPreferences)
+    private val mTeamSaver = TeamSaver(mPrefManager)
+
+    fun saveRoundLengthTime(seconds: Int) {
+        mPrefManager.putInt(seconds, ROUND_TIME_LENGTH_KEY)
+    }
+
+    fun getRoundLengthTime(): Int {
+        return mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
+    }
+
+    fun saveGameFinishScore(seconds: Int) {
+        mPrefManager.putInt(seconds, GAME_FINISH_SCORE_KEY)
+    }
+
+    fun getGameFinishScore(): Int {
+        return mPrefManager.getInt(GAME_FINISH_SCORE_KEY)
+    }
 
     fun getFinishScore(): Int {
-        return (mPrefManager.getGameFinishScore() + 1) * Constants.SCORE_STEP
+        return (getGameFinishScore() + 1) * Constants.SCORE_STEP
     }
 
     fun getRoundTime(): Int {
-        return (mPrefManager.getRoundLengthTime() + 1) * Constants.TIME_STEP
+        return (getRoundLengthTime() + 1) * Constants.TIME_STEP
+    }
+
+    fun getTeamSaver(): TeamSaver {
+        return mTeamSaver
     }
 }

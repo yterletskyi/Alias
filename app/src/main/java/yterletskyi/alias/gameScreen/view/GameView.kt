@@ -1,6 +1,8 @@
 package yterletskyi.alias.gameScreen.view
 
+import android.content.SharedPreferences
 import android.support.annotation.IdRes
+import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.gameScreen.model.Team
 
 /**
@@ -18,7 +20,7 @@ interface GameView {
 
     fun disableButtons()
 
-    fun changeTimerValue(time: String)
+    fun setTimerValue(time: String)
 
     fun setDrawScore(draws: String)
 
@@ -33,5 +35,9 @@ interface GameView {
     fun setMaxTimeProgressBarValue(value: Int)
 
     fun changeProgressBarValue(time: Int)
+
+    fun getResArray(@IdRes resId: Int): Array<String>
+
+    fun getGamePreferences() : GamePreferences
 
 }

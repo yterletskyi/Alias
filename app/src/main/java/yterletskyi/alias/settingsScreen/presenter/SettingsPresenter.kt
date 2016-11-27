@@ -1,9 +1,5 @@
 package yterletskyi.alias.settingsScreen.presenter
 
-import android.content.Context
-import android.widget.SeekBar
-import yterletskyi.alias.R
-import yterletskyi.alias.SharedPreferencesManager
 import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Constants
 import yterletskyi.alias.settingsScreen.view.SettingsView
@@ -13,12 +9,6 @@ import yterletskyi.alias.settingsScreen.view.SettingsView
  */
 // todo refactor this class
 class SettingsPresenter(val mView: SettingsView) {
-
-    var mSharedPreferenceManager: SharedPreferencesManager
-
-    init {
-        mSharedPreferenceManager = SharedPreferencesManager(mView as Context)
-    }
 
     fun save() {
         saveEndTime()
@@ -35,7 +25,8 @@ class SettingsPresenter(val mView: SettingsView) {
     }
 
     private fun setupTime() {
-        val marks = mSharedPreferenceManager.getRoundLengthTime()
+        val gamePreferences = mView.getGamePreferences()
+        val marks = gamePreferences.getRoundLengthTime()
         val totalSeconds = (marks + 1) * Constants.TIME_STEP
         val time = TimeFormatter().formatTimeStr(totalSeconds)
         mView.setTimeText(time)
@@ -43,17 +34,19 @@ class SettingsPresenter(val mView: SettingsView) {
     }
 
     private fun setupGameEndScore() {
-        val score = mSharedPreferenceManager.getGameFinishScore()
+        val gamePreferences = mView.getGamePreferences()
+        val score = gamePreferences.getGameFinishScore()
         val scoreStr = ((score + 1) * Constants.SCORE_STEP).toString()
         mView.setScoreSeek(score)
         mView.setScoreText(scoreStr)
     }
 
     private fun saveEndTime() {
+        val gamePreferences = mView.getGamePreferences()
         val time = mView.getEndTime()
         val secs = timeToSeconds(time)
         val marks = secs / Constants.TIME_STEP - 1
-        mSharedPreferenceManager.saveRoundLengthTime(marks)
+        gamePreferences.saveRoundLengthTime(marks)
     }
 
     private fun timeToSeconds(time: String): Int {
@@ -63,19 +56,20 @@ class SettingsPresenter(val mView: SettingsView) {
     }
 
     private fun saveEndScore() {
+        val gamePreferences = mView.getGamePreferences()
         val score = mView.getEndScore()
         val marks = (score - 1) / Constants.SCORE_STEP
-        mSharedPreferenceManager.saveGameFinishScore(marks)
+        gamePreferences.saveGameFinishScore(marks)
     }
 
-    fun onSeekBarValueChanged(seekBar: SeekBar?, progress: Int) {
-        if (seekBar!!.id == R.id.seek_time) {
-            val secs = (progress + 1) * Constants.TIME_STEP
-            val time = TimeFormatter().formatTimeStr(secs)
-            mView.setTimeText(time)
-        } else {
-            val text = ((progress + 1) * Constants.SCORE_STEP).toString()
-            mView.setScoreText(text)
-        }
+    fun onSeekTimeValueChanged(progress: Int) {
+        val secs = (progress + 1) * Constants.TIME_STEP
+        val time = TimeFormatter().formatTimeStr(secs)
+        mView.setTimeText(time)
+    }
+
+    fun onSeekScoreValueChanged(progress: Int) {
+        val text = ((progress + 1) * Constants.SCORE_STEP).toString()
+        mView.setScoreText(text)
     }
 }

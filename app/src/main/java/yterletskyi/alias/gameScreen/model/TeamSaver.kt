@@ -1,18 +1,17 @@
 package yterletskyi.alias.gameScreen.model
 
-import android.content.Context
 import yterletskyi.alias.SharedPreferencesManager
 
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class TeamSaver(context: Context) {
+class TeamSaver(val mPrefManager: SharedPreferencesManager) {
 
     private val KEY_NAME: String = "team_name"
     private val KEY_WINS: String = "wins_name"
     private val KEY_DRAW: String = "draws_name"
     private val TEAMS_COUNT_KEY: String = "teams_count"
-    private val mPrefManager: SharedPreferencesManager = SharedPreferencesManager(context)
+
 
     fun saveTeams(teams: MutableList<Team>) {
         saveTeamsCount(teams.size)

@@ -1,30 +1,23 @@
 package yterletskyi.alias.gameScreen.model
 
-import android.content.Context
-
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class Game(context: Context) : OnRoundTimeListener {
+class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTimeListener {
 
     lateinit var teamsArrayList: MutableList<Team>
-    private lateinit var mWords: Words
+    private val mWords: Words = Words(words)
     private var mCurrentTeam: Team? = null
     var onRoundEndListener: OnRoundTimeListener? = null
-    private var mGamePreferences: GamePreferences = GamePreferences(context)
+    private var mGamePreferences: GamePreferences = gamePreferences
     private var mRound: Round = Round((getRoundLength() * 1000).toLong(), this)
 
     init {
-        setupTeams(context)
-        setupWords(context)
+        setupTeams()
     }
 
-    private fun setupWords(context: Context) {
-        mWords = Words(context.resources)
-    }
-
-    private fun setupTeams(context: Context) {
-        val teamSaver = TeamSaver(context)
+    private fun setupTeams() {
+        val teamSaver = mGamePreferences.getTeamSaver()
         teamsArrayList = teamSaver.getTeams()
         mCurrentTeam = teamsArrayList.get(0)
     }
