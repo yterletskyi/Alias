@@ -5,7 +5,7 @@ import yterletskyi.alias.SharedPreferencesManager
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class TeamSaver(val mPrefManager: SharedPreferencesManager) {
+class TeamSaver(private val mPrefManager: SharedPreferencesManager) {
 
     private val KEY_NAME: String = "team_name"
     private val KEY_WINS: String = "wins_name"

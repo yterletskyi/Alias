@@ -14,7 +14,9 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
+import yterletskyi.alias.endRoundScreen.view.EndRoundActivity
 import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.gameScreen.presenter.GamePresenter
@@ -48,7 +50,7 @@ class GameActivity : AppCompatActivity(), GameView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         ButterKnife.bind(this)
-        mPresenter.onCreate()
+        mPresenter.onCreate(intent)
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {
@@ -154,6 +156,10 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun getGamePreferences(): GamePreferences {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         return GamePreferences(sharedPrefs)
+    }
+
+    override fun showEndRoundActivity(data: Bundle) {
+        ActivityStarter().start(this, EndRoundActivity::class.java, true, data)
     }
 
     override fun onStop() {

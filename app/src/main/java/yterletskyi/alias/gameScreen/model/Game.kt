@@ -3,7 +3,7 @@ package yterletskyi.alias.gameScreen.model
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTimeListener {
+class Game(gamePreferences: GamePreferences, words: Array<String>, private var mCurrentTeamIndex: Int) : OnRoundTimeListener {
 
     lateinit var teamsArrayList: MutableList<Team>
     private val mWords: Words = Words(words)
@@ -19,7 +19,10 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
     private fun setupTeams() {
         val teamSaver = mGamePreferences.getTeamSaver()
         teamsArrayList = teamSaver.getTeams()
-        mCurrentTeam = teamsArrayList.get(0)
+        if (mCurrentTeamIndex == teamsArrayList.size) {
+            mCurrentTeamIndex = 0
+        }
+        mCurrentTeam = teamsArrayList[mCurrentTeamIndex]
     }
 
     fun start() {
@@ -64,5 +67,9 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
 
     fun stop() {
         mRound.stop()
+    }
+
+    fun getCurrentTeamIndex(): Int {
+        return teamsArrayList.indexOf(mCurrentTeam)
     }
 }

@@ -1,6 +1,6 @@
 package yterletskyi.alias.gameScreen.view
 
-import android.content.SharedPreferences
+import android.os.Bundle
 import android.support.annotation.IdRes
 import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.gameScreen.model.Team
@@ -38,6 +38,8 @@ interface GameView {
 
     fun getResArray(@IdRes resId: Int): Array<String>
 
-    fun getGamePreferences() : GamePreferences
+    fun getGamePreferences(): GamePreferences
+
+    fun showEndRoundActivity(data: Bundle)
 
 }

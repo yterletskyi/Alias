@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".setupTeamsScreen.view.SetupTeamsActivity">
         </activity>
+        <activity android:name=".endRoundScreen.view.EndRoundActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.Team
@@ -36,11 +35,12 @@ class EndRoundDialog(context: Context) : Dialog(context), OnEndRoundTeamSelectLi
     }
 
     override fun onTeamSelected(team: Team) {
-        Toast.makeText(context, team.name, Toast.LENGTH_SHORT).show()
+        teamSelectListener.onTeamSelected(team)
+        dismiss()
     }
 
     override fun onNoneSelected() {
-        Toast.makeText(context, "None", Toast.LENGTH_SHORT).show()
+        teamSelectListener.onNoneSelected()
         dismiss()
     }
 }

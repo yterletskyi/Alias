@@ -1,5 +1,7 @@
 package yterletskyi.alias.gameScreen.presenter
 
+import android.content.Intent
+import android.os.Bundle
 import yterletskyi.alias.R
 import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Game
@@ -15,8 +17,8 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     private lateinit var mGame: Game
 
-    fun onCreate() {
-        mGame = Game(mView.getGamePreferences(), mView.getResArray(R.array.words))
+    fun onCreate(data: Intent) {
+        mGame = Game(mView.getGamePreferences(), mView.getResArray(R.array.words), data.getIntExtra("CurrentTeamIndex", 0))
         mGame.onRoundEndListener = this
         mView.showSnackbar(R.string.tap_to_start, R.string.start)
         mView.setupActionBarTitle(mGame.getCurrentTeam().name)
@@ -77,6 +79,7 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
     }
 
     override fun onRoundEnded() {
+        // check if score < endScore
         hidePauseButton()
         disableUi()
         mView.setTimerValue("0")
@@ -85,10 +88,19 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     override fun onTeamSelected(team: Team) {
         team.winScores++
+        saveTeams()
+        startEndRoundActivity()
     }
 
     override fun onNoneSelected() {
+        saveTeams()
+        startEndRoundActivity()
+    }
 
+    private fun startEndRoundActivity() {
+        val data = Bundle()
+        data.putInt("CurrentTeamIndex", mGame.getCurrentTeamIndex())
+        mView.showEndRoundActivity(data)
     }
 
     fun pause() {
@@ -103,5 +115,10 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     fun onStop() {
         mGame.stop()
+    }
+
+    fun saveTeams() {
+        val teamSaver = mView.getGamePreferences().getTeamSaver()
+        teamSaver.saveTeams(mGame.teamsArrayList)
     }
 }
