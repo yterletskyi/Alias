@@ -1,5 +1,6 @@
 package yterletskyi.alias.roundScreen.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.annotation.IdRes
 import android.support.constraint.ConstraintLayout
@@ -16,7 +17,6 @@ import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
-import yterletskyi.alias.endRoundScreen.view.EndRoundActivity
 import yterletskyi.alias.roundScreen.model.Game
 import yterletskyi.alias.roundScreen.model.Team
 import yterletskyi.alias.roundScreen.presenter.RoundPresenter
@@ -153,8 +153,8 @@ class RoundActivity : AppCompatActivity(), RoundView {
         return (application as AliasApp).game
     }
 
-    override fun showEndRoundActivity() {
-        ActivityStarter().start(this, EndRoundActivity::class.java, true)
+    override fun showScreen(screen: Class<out Activity>) {
+        ActivityStarter().start(this, screen, true)
     }
 
     override fun onStop() {

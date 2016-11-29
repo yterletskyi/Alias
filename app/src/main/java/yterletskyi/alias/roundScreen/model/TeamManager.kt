@@ -5,14 +5,19 @@ package yterletskyi.alias.roundScreen.model
  */
 class TeamManager(val teams: MutableList<Team>) {
 
-    var currentTeamIndex = 0
-    var currentTeam: Team = teams[currentTeamIndex]
+    private var mCurrentTeamIndex = 0
+    var currentTeam: Team = teams[mCurrentTeamIndex]
 
     fun nextTeam() {
-        currentTeamIndex++
-        if (currentTeamIndex == teams.size) {
-            currentTeamIndex = 0
+        mCurrentTeamIndex++
+        if (mCurrentTeamIndex == teams.size) {
+            mCurrentTeamIndex = 0
         }
-        currentTeam = teams[currentTeamIndex]
+        currentTeam = teams[mCurrentTeamIndex]
+    }
+
+    fun getLeadingTeam(): Team {
+        teams.sortByDescending { it.winScores }
+        return teams[0]
     }
 }

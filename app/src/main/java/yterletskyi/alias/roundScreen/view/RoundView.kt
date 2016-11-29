@@ -1,5 +1,6 @@
 package yterletskyi.alias.roundScreen.view
 
+import android.app.Activity
 import android.support.annotation.IdRes
 import yterletskyi.alias.roundScreen.model.Game
 import yterletskyi.alias.roundScreen.model.Team
@@ -37,6 +38,5 @@ interface RoundView {
 
     fun getGame(): Game
 
-    fun showEndRoundActivity()
-
+    fun showScreen(screen: Class<out Activity>)
 }

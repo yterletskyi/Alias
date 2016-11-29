@@ -10,18 +10,17 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 class EndRoundPresenter(private val mView: EndRoundView) {
 
-    private lateinit var mGame: Game;
+    private lateinit var mGame: Game
 
     fun onCreate() {
         mGame = mView.getGame()
-
-        setupTeamTxtView(mGame.teamManager.currentTeam)
-        setupTeamsRecyclerView(mGame.teamManager.currentTeamIndex)
+        setupTeamTxtView()
+        setupTeamsRecyclerView()
     }
 
-    private fun setupTeamsRecyclerView(currentTeamIndex: Int) {
+    private fun setupTeamsRecyclerView() {
         val teams = copyList()
-        teams.removeAt(currentTeamIndex)
+        teams.remove(mGame.teamManager.currentTeam)
         val adapter = TeamAdapter(teams)
         mView.setupTeamsRecyclerView(adapter)
     }
@@ -34,7 +33,8 @@ class EndRoundPresenter(private val mView: EndRoundView) {
         return list
     }
 
-    private fun setupTeamTxtView(team: Team) {
+    private fun setupTeamTxtView() {
+        val team = mGame.teamManager.currentTeam
         mView.setTextViewText(team.name)
         mView.setWins(team.winScores)
         mView.setDraws(team.drawScores)

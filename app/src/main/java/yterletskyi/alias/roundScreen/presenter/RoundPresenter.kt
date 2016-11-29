@@ -2,6 +2,8 @@ package yterletskyi.alias.roundScreen.presenter
 
 import yterletskyi.alias.R
 import yterletskyi.alias.TimeFormatter
+import yterletskyi.alias.endRoundScreen.view.EndRoundActivity
+import yterletskyi.alias.gameFinishScreen.view.GameFinishActivity
 import yterletskyi.alias.roundScreen.model.Game
 import yterletskyi.alias.roundScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.roundScreen.model.OnRoundTimeListener
@@ -98,15 +100,26 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
 
     override fun onTeamSelected(team: Team) {
         team.winScores++
-        startEndRoundActivity()
+        proceed()
     }
 
     override fun onNoneSelected() {
-        startEndRoundActivity()
+        proceed()
     }
 
-    private fun startEndRoundActivity() {
-        mView.showEndRoundActivity()
+    private fun proceed() {
+        val finish = isItLastRound()
+        if (finish) {
+            mView.showScreen(GameFinishActivity::class.java)
+        } else {
+            mView.showScreen(EndRoundActivity::class.java)
+        }
+    }
+
+    private fun isItLastRound(): Boolean {
+        val finishScore = mGame.gameConfigs!!.gameFinishScore
+        val maxScore = mGame.teamManager.getLeadingTeam().winScores
+        return maxScore >= finishScore
     }
 
     fun pause() {
