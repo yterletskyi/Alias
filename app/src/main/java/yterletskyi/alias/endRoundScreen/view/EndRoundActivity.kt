@@ -1,7 +1,6 @@
 package yterletskyi.alias.endRoundScreen.view
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -10,10 +9,11 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
+import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
 import yterletskyi.alias.endRoundScreen.presenter.EndRoundPresenter
-import yterletskyi.alias.gameScreen.model.GamePreferences
-import yterletskyi.alias.gameScreen.view.GameActivity
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.view.RoundActivity
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 class EndRoundActivity : AppCompatActivity(), EndRoundView {
@@ -36,7 +36,7 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_end_round)
         ButterKnife.bind(this)
-        mPresenter.onCreate(intent)
+        mPresenter.onCreate()
     }
 
     @OnClick(R.id.btn_next_round)
@@ -53,11 +53,6 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
         mTeamsRecyclerView.adapter = adapter
     }
 
-    override fun getGamePreferences(): GamePreferences {
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        return GamePreferences(sharedPrefs)
-    }
-
     override fun setWins(winScores: Int) {
         mCurrentTeamWinsTxtView.text = winScores.toString()
     }
@@ -66,7 +61,11 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
         mCurrentTeamDrawsTxtView.text = drawScores.toString()
     }
 
-    override fun startGameActivity(data: Bundle) {
-        ActivityStarter().start(this, GameActivity::class.java, true, data)
+    override fun getGame(): Game {
+        return (application as AliasApp).game
+    }
+
+    override fun startGameActivity() {
+        ActivityStarter().start(this, RoundActivity::class.java, true)
     }
 }

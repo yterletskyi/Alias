@@ -14,9 +14,9 @@ class TimeFormatter {
         return min.toString() + ":" + secStr
     }
 
-    fun formatTimeStr(seconds: Int): String {
-        val minutes = seconds / 60
-        val seconds = seconds - minutes * 60
+    fun formatTimeStr(secs: Int): String {
+        val minutes = secs / 60
+        val seconds = secs - minutes * 60
         return composeTimeStr(minutes, seconds)
     }
 

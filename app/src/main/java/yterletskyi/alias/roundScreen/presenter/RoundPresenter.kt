@@ -1,38 +1,48 @@
-package yterletskyi.alias.gameScreen.presenter
+package yterletskyi.alias.roundScreen.presenter
 
-import android.content.Intent
-import android.os.Bundle
 import yterletskyi.alias.R
 import yterletskyi.alias.TimeFormatter
-import yterletskyi.alias.gameScreen.model.Game
-import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
-import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
-import yterletskyi.alias.gameScreen.model.Team
-import yterletskyi.alias.gameScreen.view.GameView
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.model.OnEndRoundTeamSelectListener
+import yterletskyi.alias.roundScreen.model.OnRoundTimeListener
+import yterletskyi.alias.roundScreen.model.Team
+import yterletskyi.alias.roundScreen.view.RoundView
 
 /**
  * Created by yterletskyi on 13.11.16.
  */
-class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSelectListener {
+class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeamSelectListener {
 
-    private lateinit var mGame: Game
+    private lateinit var mGame: Game;
 
-    fun onCreate(data: Intent) {
-        mGame = Game(mView.getGamePreferences(), mView.getResArray(R.array.words), data.getIntExtra("CurrentTeamIndex", 0))
+    fun onCreate() {
+        mGame = mView.getGame()
         mGame.onRoundEndListener = this
-        mView.showSnackbar(R.string.tap_to_start, R.string.start)
-        mView.setupActionBarTitle(mGame.getCurrentTeam().name)
-        val roundLength = mGame.getRoundLength()
+        setupSnackbar()
+        setupActionBar()
+        setupProgressBarAndTimer()
+    }
+
+    private fun setupProgressBarAndTimer() {
+        val roundLength = mGame.gameConfigs!!.roundLengthSec
         mView.setMaxTimeProgressBarValue(roundLength)
         val roundLengthStr = TimeFormatter().formatTimeStr(roundLength)
         mView.setTimerValue(roundLengthStr)
+    }
+
+    private fun setupActionBar() {
+        mView.setupActionBarTitle(mGame.teamManager.currentTeam.name)
+    }
+
+    private fun setupSnackbar() {
+        mView.showSnackbar(R.string.tap_to_start, R.string.start)
     }
 
     fun startGame() {
         setWord()
         enableUi()
         showPauseButton()
-        mGame.start()
+        mGame.startWithNewRound()
     }
 
     fun hidePauseButton() {
@@ -44,7 +54,7 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
     }
 
     private fun setWord() {
-        val word = mGame.getNextWord()
+        val word = mGame.words.nextWord()
         mView.setWord(word, R.anim.fade_in_animation)
     }
 
@@ -57,13 +67,13 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
     }
 
     fun answerCorrect() {
-        val wins = mGame.correctAnswer()
+        val wins = mGame.answerCorrect()
         mView.setWinScore(wins.toString())
         setWord()
     }
 
     fun answerWrong() {
-        val draws = mGame.wrongAnswer()
+        val draws = mGame.answerWrong()
         mView.setDrawScore(draws.toString())
         setWord()
     }
@@ -75,7 +85,7 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
     }
 
     private fun setProgressBarValue(time: Int) {
-        mView.changeProgressBarValue(mGame.getRoundLength() - time)
+        mView.changeProgressBarValue(mGame.gameConfigs!!.roundLengthSec - time)
     }
 
     override fun onRoundEnded() {
@@ -83,24 +93,20 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
         hidePauseButton()
         disableUi()
         mView.setTimerValue("0")
-        mView.openEndRoundDialog(mGame.teamsArrayList)
+        mView.openEndRoundDialog(mGame.teamManager.teams)
     }
 
     override fun onTeamSelected(team: Team) {
         team.winScores++
-        saveTeams()
         startEndRoundActivity()
     }
 
     override fun onNoneSelected() {
-        saveTeams()
         startEndRoundActivity()
     }
 
     private fun startEndRoundActivity() {
-        val data = Bundle()
-        data.putInt("CurrentTeamIndex", mGame.getCurrentTeamIndex())
-        mView.showEndRoundActivity(data)
+        mView.showEndRoundActivity()
     }
 
     fun pause() {
@@ -115,10 +121,5 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     fun onStop() {
         mGame.stop()
-    }
-
-    fun saveTeams() {
-        val teamSaver = mView.getGamePreferences().getTeamSaver()
-        teamSaver.saveTeams(mGame.teamsArrayList)
     }
 }

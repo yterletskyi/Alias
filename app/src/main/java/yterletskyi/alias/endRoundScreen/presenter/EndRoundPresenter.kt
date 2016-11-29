@@ -1,9 +1,8 @@
 package yterletskyi.alias.endRoundScreen.presenter
 
-import android.content.Intent
-import android.os.Bundle
 import yterletskyi.alias.endRoundScreen.view.EndRoundView
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.model.Team
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -11,14 +10,13 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 class EndRoundPresenter(private val mView: EndRoundView) {
 
-    private var mCurrentTeamIndex: Int = 0
-    private lateinit var mTeams: MutableList<Team>
+    private lateinit var mGame: Game;
 
-    fun onCreate(intent: Intent) {
-        mTeams = mView.getGamePreferences().getTeamSaver().getTeams()
-        mCurrentTeamIndex = intent.getIntExtra("CurrentTeamIndex", -1)
-        setupTeamTxtView(mTeams[mCurrentTeamIndex])
-        setupTeamsRecyclerView(mCurrentTeamIndex)
+    fun onCreate() {
+        mGame = mView.getGame()
+
+        setupTeamTxtView(mGame.teamManager.currentTeam)
+        setupTeamsRecyclerView(mGame.teamManager.currentTeamIndex)
     }
 
     private fun setupTeamsRecyclerView(currentTeamIndex: Int) {
@@ -30,7 +28,7 @@ class EndRoundPresenter(private val mView: EndRoundView) {
 
     private fun copyList(): MutableList<Team> {
         val list: MutableList<Team> = mutableListOf()
-        for (team in mTeams) {
+        for (team in mGame.teamManager.teams) {
             list.add(team)
         }
         return list
@@ -47,9 +45,7 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     }
 
     private fun showGameActivity() {
-        val data = Bundle()
-        data.putInt("CurrentTeamIndex", ++mCurrentTeamIndex)
-        mView.startGameActivity(data)
+        mView.startGameActivity()
     }
 
 

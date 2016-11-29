@@ -1,4 +1,4 @@
-package yterletskyi.alias.gameScreen.view.endRoundDialog
+package yterletskyi.alias.roundScreen.view.endRoundDialog
 
 import android.app.Dialog
 import android.content.Context
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.OnEndRoundTeamSelectListener
+import yterletskyi.alias.roundScreen.model.Team
 
 /**
  * Created by yterletskyi on 15.11.16.

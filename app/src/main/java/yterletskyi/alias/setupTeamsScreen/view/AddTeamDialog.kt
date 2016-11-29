@@ -7,7 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.EditText
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Team
 import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
 
 /**

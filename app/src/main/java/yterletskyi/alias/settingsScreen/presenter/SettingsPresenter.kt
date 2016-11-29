@@ -1,7 +1,7 @@
 package yterletskyi.alias.settingsScreen.presenter
 
 import yterletskyi.alias.TimeFormatter
-import yterletskyi.alias.gameScreen.model.Constants
+import yterletskyi.alias.roundScreen.model.Constants
 import yterletskyi.alias.settingsScreen.view.SettingsView
 
 /**
@@ -26,7 +26,7 @@ class SettingsPresenter(val mView: SettingsView) {
 
     private fun setupTime() {
         val gamePreferences = mView.getGamePreferences()
-        val marks = gamePreferences.getRoundLengthTime()
+        val marks = gamePreferences.getRoundLengthTimeMarks()
         val totalSeconds = (marks + 1) * Constants.TIME_STEP
         val time = TimeFormatter().formatTimeStr(totalSeconds)
         mView.setTimeText(time)
@@ -35,7 +35,7 @@ class SettingsPresenter(val mView: SettingsView) {
 
     private fun setupGameEndScore() {
         val gamePreferences = mView.getGamePreferences()
-        val score = gamePreferences.getGameFinishScore()
+        val score = gamePreferences.getGameFinishScoreMarks()
         val scoreStr = ((score + 1) * Constants.SCORE_STEP).toString()
         mView.setScoreSeek(score)
         mView.setScoreText(scoreStr)
@@ -46,7 +46,7 @@ class SettingsPresenter(val mView: SettingsView) {
         val time = mView.getEndTime()
         val secs = timeToSeconds(time)
         val marks = secs / Constants.TIME_STEP - 1
-        gamePreferences.saveRoundLengthTime(marks)
+        gamePreferences.saveRoundLengthTime(marks.toInt())
     }
 
     private fun timeToSeconds(time: String): Int {

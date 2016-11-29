@@ -1,4 +1,4 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 import yterletskyi.alias.SharedPreferencesManager
 

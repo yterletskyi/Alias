@@ -9,7 +9,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.model.SimpleItemTouchHelperCallback
 import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamsPresenter
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter

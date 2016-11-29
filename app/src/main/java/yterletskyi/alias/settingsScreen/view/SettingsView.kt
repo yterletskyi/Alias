@@ -1,6 +1,6 @@
 package yterletskyi.alias.settingsScreen.view
 
-import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.roundScreen.model.GamePreferences
 
 /**
  * Created by yterletskyi on 12.11.16.

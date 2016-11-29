@@ -1,6 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.model
 
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Team
 
 /**
  * Created by yterletskyi on 25.11.16.

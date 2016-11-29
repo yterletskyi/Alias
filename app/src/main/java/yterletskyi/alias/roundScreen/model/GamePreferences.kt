@@ -1,4 +1,4 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 import android.content.SharedPreferences
 import yterletskyi.alias.SharedPreferencesManager
@@ -18,7 +18,7 @@ class GamePreferences(sharedPreferences: SharedPreferences) {
         mPrefManager.putInt(seconds, ROUND_TIME_LENGTH_KEY)
     }
 
-    fun getRoundLengthTime(): Int {
+    fun getRoundLengthTimeMarks(): Int {
         return mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
     }
 
@@ -26,16 +26,16 @@ class GamePreferences(sharedPreferences: SharedPreferences) {
         mPrefManager.putInt(seconds, GAME_FINISH_SCORE_KEY)
     }
 
-    fun getGameFinishScore(): Int {
+    fun getGameFinishScoreMarks(): Int {
         return mPrefManager.getInt(GAME_FINISH_SCORE_KEY)
     }
 
     fun getFinishScore(): Int {
-        return (getGameFinishScore() + 1) * Constants.SCORE_STEP
+        return (getGameFinishScoreMarks() + 1) * Constants.SCORE_STEP
     }
 
     fun getRoundTime(): Int {
-        return (getRoundLengthTime() + 1) * Constants.TIME_STEP
+        return (getRoundLengthTimeMarks() + 1) * Constants.TIME_STEP
     }
 
     fun getTeamSaver(): TeamSaver {

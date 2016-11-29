@@ -1,4 +1,4 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 /**
  * Created by yterletskyi on 25.11.16.

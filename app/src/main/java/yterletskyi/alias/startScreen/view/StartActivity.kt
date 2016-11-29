@@ -6,7 +6,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.view.GameActivity
+import yterletskyi.alias.roundScreen.view.RoundActivity
 import yterletskyi.alias.settingsScreen.view.SettingsActivity
 import yterletskyi.alias.startScreen.presenter.StartPresenter
 
@@ -23,7 +23,7 @@ class StartActivity : AppCompatActivity(), StartView {
     }
 
     override fun showGame() {
-        ActivityStarter().start(this, GameActivity::class.java, false)
+        ActivityStarter().start(this, RoundActivity::class.java, false)
     }
 
     override fun showSettings() {

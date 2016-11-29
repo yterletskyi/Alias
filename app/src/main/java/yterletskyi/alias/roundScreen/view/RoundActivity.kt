@@ -1,7 +1,6 @@
-package yterletskyi.alias.gameScreen.view
+package yterletskyi.alias.roundScreen.view
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.annotation.IdRes
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.Snackbar
@@ -15,14 +14,15 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
+import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
 import yterletskyi.alias.endRoundScreen.view.EndRoundActivity
-import yterletskyi.alias.gameScreen.model.GamePreferences
-import yterletskyi.alias.gameScreen.model.Team
-import yterletskyi.alias.gameScreen.presenter.GamePresenter
-import yterletskyi.alias.gameScreen.view.endRoundDialog.EndRoundDialog
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.model.Team
+import yterletskyi.alias.roundScreen.presenter.RoundPresenter
+import yterletskyi.alias.roundScreen.view.endRoundDialog.EndRoundDialog
 
-class GameActivity : AppCompatActivity(), GameView {
+class RoundActivity : AppCompatActivity(), RoundView {
 
     @BindView(R.id.progressBar)
     lateinit var mTimeProgressBar: ProgressBar
@@ -44,13 +44,13 @@ class GameActivity : AppCompatActivity(), GameView {
 
     lateinit var mMenu: Menu
 
-    val mPresenter: GamePresenter = GamePresenter(this)
+    val mPresenter: RoundPresenter = RoundPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
         ButterKnife.bind(this)
-        mPresenter.onCreate(intent)
+        mPresenter.onCreate()
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {
@@ -149,17 +149,12 @@ class GameActivity : AppCompatActivity(), GameView {
         mMenu.findItem(R.id.item_menu_pause).isVisible = false
     }
 
-    override fun getResArray(resId: Int): Array<String> {
-        return resources.getStringArray(resId)
+    override fun getGame(): Game {
+        return (application as AliasApp).game
     }
 
-    override fun getGamePreferences(): GamePreferences {
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        return GamePreferences(sharedPrefs)
-    }
-
-    override fun showEndRoundActivity(data: Bundle) {
-        ActivityStarter().start(this, EndRoundActivity::class.java, true, data)
+    override fun showEndRoundActivity() {
+        ActivityStarter().start(this, EndRoundActivity::class.java, true)
     }
 
     override fun onStop() {

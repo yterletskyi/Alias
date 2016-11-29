@@ -1,14 +1,13 @@
-package yterletskyi.alias.gameScreen.view
+package yterletskyi.alias.roundScreen.view
 
-import android.os.Bundle
 import android.support.annotation.IdRes
-import yterletskyi.alias.gameScreen.model.GamePreferences
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.model.Team
 
 /**
  * Created by yterletskyi on 13.11.16.
  */
-interface GameView {
+interface RoundView {
 
     fun showSnackbar(descrResId: Int, actionResId: Int)
 
@@ -36,10 +35,8 @@ interface GameView {
 
     fun changeProgressBarValue(time: Int)
 
-    fun getResArray(@IdRes resId: Int): Array<String>
+    fun getGame(): Game
 
-    fun getGamePreferences(): GamePreferences
-
-    fun showEndRoundActivity(data: Bundle)
+    fun showEndRoundActivity()
 
 }

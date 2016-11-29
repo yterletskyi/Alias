@@ -8,7 +8,7 @@ import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Team
 import java.util.*
 
 

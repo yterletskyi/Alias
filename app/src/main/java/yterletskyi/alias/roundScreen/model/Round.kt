@@ -1,11 +1,11 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 /**
  * Created by yterletskyi on 14.11.16.
  */
-class Round(length: Long, listener: OnRoundTimeListener) {
+class Round(lengthSeconds: Int, listener: OnRoundTimeListener) {
 
-    private var mTimer = object : MyTimer(length) {
+    private var mTimer = object : MyTimer(lengthSeconds * 1000L) {
 
         override fun onTick(secLeft: Int) {
             listener.onSecondElapsed(secLeft)

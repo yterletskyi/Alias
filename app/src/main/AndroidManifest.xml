@@ -3,11 +3,13 @@
           package="yterletskyi.alias">
 
     <application
+        android:name=".AliasApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".startScreen.view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -15,14 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".settingsScreen.view.SettingsActivity">
-        </activity>
-        <activity android:name=".gameScreen.view.GameActivity">
-        </activity>
-        <activity android:name=".setupTeamsScreen.view.SetupTeamsActivity">
-        </activity>
-        <activity android:name=".endRoundScreen.view.EndRoundActivity">
-        </activity>
+
+        <activity android:name=".settingsScreen.view.SettingsActivity"/>
+
+        <activity android:name=".roundScreen.view.RoundActivity"/>
+
+        <activity android:name=".setupTeamsScreen.view.SetupTeamsActivity"/>
+
+        <activity android:name=".endRoundScreen.view.EndRoundActivity"/>
     </application>
 
 </manifest>

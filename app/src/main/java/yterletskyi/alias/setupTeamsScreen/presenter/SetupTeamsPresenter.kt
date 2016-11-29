@@ -1,6 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.presenter
 
-import yterletskyi.alias.gameScreen.model.Team
+import yterletskyi.alias.roundScreen.model.Team
 import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
 import yterletskyi.alias.setupTeamsScreen.view.AddTeamDialog
 import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsView

@@ -1,4 +1,4 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 /**
  * Created by yterletskyi on 19.11.16.
@@ -6,7 +6,7 @@ package yterletskyi.alias.gameScreen.model
 class Constants {
 
     companion object {
-        val SCORE_STEP = 10
+        val SCORE_STEP: Int = 10
         val TIME_STEP: Int = 3
     }
 

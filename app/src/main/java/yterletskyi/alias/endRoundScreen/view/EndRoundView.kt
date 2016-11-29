@@ -1,7 +1,7 @@
 package yterletskyi.alias.endRoundScreen.view
 
-import android.os.Bundle
-import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -13,11 +13,11 @@ interface EndRoundView {
 
     fun setupTeamsRecyclerView(adapter: TeamAdapter)
 
-    fun getGamePreferences(): GamePreferences
-
     fun setWins(winScores: Int)
 
     fun setDraws(drawScores: Int)
 
-    fun startGameActivity(data: Bundle)
+    fun startGameActivity()
+
+    fun getGame(): Game
 }

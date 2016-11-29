@@ -1,6 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
-import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**

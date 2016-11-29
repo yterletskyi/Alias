@@ -11,7 +11,7 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.R
-import yterletskyi.alias.gameScreen.model.GamePreferences
+import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
 import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 

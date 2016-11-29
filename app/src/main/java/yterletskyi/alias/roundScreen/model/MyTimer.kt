@@ -1,11 +1,11 @@
-package yterletskyi.alias.gameScreen.model
+package yterletskyi.alias.roundScreen.model
 
 import android.os.Handler
 
 /**
  * Created by yterletskyi on 16.11.16.
  */
-abstract class MyTimer(var mTime: Long) {
+abstract class MyTimer(private var mTime: Long) {
 
     private val mCountDownInterval: Long = 1000;
     private var mHandler: Handler? = null
@@ -13,7 +13,7 @@ abstract class MyTimer(var mTime: Long) {
 
     init {
         initialize()
-        mTime -= 1
+        mTime -= 1000
     }
 
     fun initialize() {
@@ -21,9 +21,9 @@ abstract class MyTimer(var mTime: Long) {
         mRunnable = object : Runnable {
 
             override fun run() {
-                val sec = mTime / 1000
-                onTick(sec.toInt())
-                if (mTime <= 1000) {
+                val sec = (mTime / 1000).toInt()
+                onTick(sec)
+                if (mTime <= 0) {
                     onFinish()
                     stop()
                 } else {
