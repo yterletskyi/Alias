@@ -18,24 +18,16 @@ class GamePreferences(sharedPreferences: SharedPreferences) {
         mPrefManager.putInt(seconds, ROUND_TIME_LENGTH_KEY)
     }
 
-    fun getRoundLengthTimeMarks(): Int {
-        return mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
-    }
-
     fun saveGameFinishScore(seconds: Int) {
         mPrefManager.putInt(seconds, GAME_FINISH_SCORE_KEY)
     }
 
-    fun getGameFinishScoreMarks(): Int {
+    fun getFinishScore(): Int {
         return mPrefManager.getInt(GAME_FINISH_SCORE_KEY)
     }
 
-    fun getFinishScore(): Int {
-        return (getGameFinishScoreMarks() + 1) * Constants.SCORE_STEP
-    }
-
     fun getRoundTime(): Int {
-        return (getRoundLengthTimeMarks() + 1) * Constants.TIME_STEP
+        return mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
     }
 
     fun getTeamSaver(): TeamSaver {

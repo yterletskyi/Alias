@@ -1,7 +1,7 @@
 package yterletskyi.alias.settingsScreen.view
 
+import android.app.Activity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.SeekBar
@@ -10,8 +10,8 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
+import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
-import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
 import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 
@@ -113,8 +113,13 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         return (text as String).toInt()
     }
 
-    override fun getGamePreferences(): GamePreferences {
-        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
-        return GamePreferences(sharedPrefs)
+    override fun getAliasApp(): AliasApp {
+        return application as AliasApp
+    }
+
+    override fun showActivity(activity: Class<out Activity>) {
+        ActivityStarter().start(this, activity, true)
     }
 }
+
+

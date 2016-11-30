@@ -21,6 +21,9 @@ class TeamSaver(private val mPrefManager: SharedPreferencesManager) {
     }
 
     fun getTeams(): MutableList<Team> {
+        if (getTeamsCount() == 0) {
+            addTeamsArtificially()
+        }
         val teamsCount = getTeamsCount()
         val teams: MutableList<Team> = mutableListOf()
         for (i in 0..teamsCount - 1) {
@@ -28,6 +31,12 @@ class TeamSaver(private val mPrefManager: SharedPreferencesManager) {
             teams.add(team)
         }
         return teams
+    }
+
+    private fun addTeamsArtificially() {
+        saveTeamsCount(2)
+        saveTeam(Team("Holo"), 0)
+        saveTeam(Team("Plum"), 1)
     }
 
     private fun saveTeam(team: Team, index: Int) {

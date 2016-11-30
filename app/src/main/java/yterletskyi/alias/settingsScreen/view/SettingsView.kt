@@ -1,11 +1,11 @@
 package yterletskyi.alias.settingsScreen.view
 
-import yterletskyi.alias.roundScreen.model.GamePreferences
+import yterletskyi.alias.BaseView
 
 /**
  * Created by yterletskyi on 12.11.16.
  */
-interface SettingsView {
+interface SettingsView : BaseView {
 
     fun showSetupTeamsScreen()
 
@@ -20,7 +20,5 @@ interface SettingsView {
     fun getEndTime(): String
 
     fun getEndScore(): Int
-
-    fun getGamePreferences(): GamePreferences
 
 }

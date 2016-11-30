@@ -28,7 +28,7 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
     private fun setupProgressBarAndTimer() {
         val roundLength = mGame.gameConfigs!!.roundLengthSec
         mView.setMaxTimeProgressBarValue(roundLength)
-        val roundLengthStr = TimeFormatter().formatTimeStr(roundLength)
+        val roundLengthStr = TimeFormatter().secondsToString(roundLength)
         mView.setTimerValue(roundLengthStr)
     }
 
@@ -81,7 +81,7 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
     }
 
     override fun onSecondElapsed(time: Int) {
-        val timeStr = TimeFormatter().formatTimeStr(time)
+        val timeStr = TimeFormatter().secondsToString(time)
         mView.setTimerValue(timeStr)
         setProgressBarValue(time)
     }

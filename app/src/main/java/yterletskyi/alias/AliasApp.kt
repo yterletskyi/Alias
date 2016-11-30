@@ -36,4 +36,12 @@ class AliasApp : Application() {
         game = Game(teams, words)
         game.gameConfigs = GameConfigs(gamePreferences.getRoundTime(), gamePreferences.getFinishScore());
     }
+
+    fun saveGameConfigToPreferences() {
+        val gamePreferences = getGamePreferences()
+        gamePreferences.saveGameFinishScore(game.gameConfigs!!.gameFinishScore)
+        gamePreferences.saveRoundLengthTime(game.gameConfigs!!.roundLengthSec)
+    }
+
+
 }
