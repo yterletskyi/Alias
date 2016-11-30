@@ -9,6 +9,6 @@ interface BaseView {
 
     fun getAliasApp(): AliasApp
 
-    fun showActivity(activity: Class<out Activity>)
+    fun showActivity(activity: Class<out Activity>, finishThis: Boolean)
 
 }

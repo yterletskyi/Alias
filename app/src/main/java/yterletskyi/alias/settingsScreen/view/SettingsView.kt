@@ -7,8 +7,6 @@ import yterletskyi.alias.BaseView
  */
 interface SettingsView : BaseView {
 
-    fun showSetupTeamsScreen()
-
     fun setTimeSeek(position: Int)
 
     fun setScoreSeek(position: Int)

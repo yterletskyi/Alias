@@ -4,6 +4,7 @@ import yterletskyi.alias.TimeFormatter
 import yterletskyi.alias.roundScreen.model.Constants
 import yterletskyi.alias.roundScreen.model.GameConfigs
 import yterletskyi.alias.settingsScreen.view.SettingsView
+import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 
 /**
  * Created by yterletskyi on 12.11.16.
@@ -27,7 +28,7 @@ class SettingsPresenter(private val mView: SettingsView) {
     }
 
     fun showSetupTeamsScreen() {
-        mView.showSetupTeamsScreen()
+        mView.showActivity(SetupTeamsActivity::class.java, false)
     }
 
     private fun setupTime() {

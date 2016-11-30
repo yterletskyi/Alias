@@ -13,7 +13,6 @@ import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
 import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
-import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 
 class SettingsActivity : AppCompatActivity(), SettingsView {
 
@@ -35,7 +34,7 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         ButterKnife.bind(this)
-        addActionBarUpButton();
+        addActionBarUpButton()
         mPresenter.onCreate()
         mScoreSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -79,10 +78,6 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         mPresenter.showSetupTeamsScreen()
     }
 
-    override fun showSetupTeamsScreen() {
-        ActivityStarter().start(this, SetupTeamsActivity::class.java, false)
-    }
-
     override fun onDestroy() {
         mPresenter.save()
         super.onDestroy()
@@ -117,8 +112,8 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         return application as AliasApp
     }
 
-    override fun showActivity(activity: Class<out Activity>) {
-        ActivityStarter().start(this, activity, true)
+    override fun showActivity(activity: Class<out Activity>, finishThis: Boolean) {
+        ActivityStarter().start(this, activity, finishThis)
     }
 }
 
