@@ -25,7 +25,9 @@ class Game(teams: MutableList<Team>, val words: Words) : OnRoundTimeListener {
     }
 
     fun stop() {
-        mRound!!.stop()
+        if (mRound != null) {
+            mRound!!.stop()
+        }
     }
 
     override fun onRoundEnded() {
