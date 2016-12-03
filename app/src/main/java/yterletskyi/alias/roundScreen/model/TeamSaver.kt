@@ -41,8 +41,8 @@ class TeamSaver(private val mPrefManager: SharedPreferencesManager) {
 
     private fun saveTeam(team: Team, index: Int) {
         mPrefManager.putString(team.name, KEY_NAME + index.toString())
-        mPrefManager.putInt(team.winScores, KEY_WINS + index.toString())
-        mPrefManager.putInt(team.drawScores, KEY_DRAW + index.toString())
+//        mPrefManager.putInt(team.winScores, KEY_WINS + index.toString())
+//        mPrefManager.putInt(team.drawScores, KEY_DRAW + index.toString())
     }
 
     private fun getTeam(i: Int): Team {

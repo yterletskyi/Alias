@@ -36,8 +36,7 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     private fun setupTeamTxtView() {
         val team = mGame.teamManager.currentTeam
         mView.setTextViewText(team.name)
-        mView.setWins(team.winScores)
-        mView.setDraws(team.drawScores)
+        mView.setScores(team.winScores - team.drawScores)
     }
 
     fun nextRound() {

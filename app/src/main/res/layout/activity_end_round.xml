@@ -16,7 +16,6 @@
         android:id="@+id/linear_layout1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -44,22 +43,6 @@
             android:layout_marginEnd="7dp"
             android:text="1"
             android:textColor="@color/correct_answer_btn"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="7dp"
-            android:text="/"
-            android:textColor="@color/black"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:id="@+id/text_cur_team_draws"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:textColor="@color/not_correct_answer_btn"
             android:textSize="30sp"/>
 
     </LinearLayout>

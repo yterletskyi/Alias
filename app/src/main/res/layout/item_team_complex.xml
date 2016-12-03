@@ -53,24 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="7dp"
-            android:text="0"
+            android:text="25"
             android:textColor="@color/correct_answer_btn"
-            android:textSize="24sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="7dp"
-            android:text="/"
-            android:textColor="@color/black"
-            android:textSize="24sp"/>
-
-        <TextView
-            android:id="@+id/text_draws"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/not_correct_answer_btn"
             android:textSize="24sp"/>
 
     </LinearLayout>

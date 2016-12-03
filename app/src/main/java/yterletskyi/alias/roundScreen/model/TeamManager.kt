@@ -20,4 +20,11 @@ class TeamManager(val teams: MutableList<Team>) {
         teams.sortByDescending { it.winScores }
         return teams[0]
     }
+
+    fun clearScores() {
+        for (team in teams) {
+            team.drawScores = 0
+            team.winScores = 0
+        }
+    }
 }

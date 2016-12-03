@@ -1,47 +1,46 @@
 package yterletskyi.alias.startScreen.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import butterknife.ButterKnife
 import butterknife.OnClick
 import yterletskyi.alias.ActivityStarter
+import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
-import yterletskyi.alias.roundScreen.view.RoundActivity
-import yterletskyi.alias.settingsScreen.view.SettingsActivity
 import yterletskyi.alias.startScreen.presenter.StartPresenter
 
 class StartActivity : AppCompatActivity(), StartView {
 
-    private var mStartPresenter: StartPresenter? = null
+    private var mStartPresenter: StartPresenter = StartPresenter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-        mStartPresenter = StartPresenter(this)
         ButterKnife.bind(this)
-
     }
 
-    override fun showGame() {
-        ActivityStarter().start(this, RoundActivity::class.java, false)
+    override fun onStart() {
+        super.onStart()
+//        // todo: think about better solution for this instead of workaround
+//        mStartPresenter.onStart();
     }
 
-    override fun showSettings() {
-        ActivityStarter().start(this, SettingsActivity::class.java, false)
+    override fun showActivity(activity: Class<out Activity>, finishThis: Boolean) {
+        ActivityStarter().start(this, activity, finishThis)
+    }
+
+    override fun getAliasApp(): AliasApp {
+        return application as AliasApp
     }
 
     @OnClick(R.id.btn_game)
     fun onGameBtnClicked() {
-        mStartPresenter!!.onGameBtnClicked()
+        mStartPresenter.onGameBtnClicked()
     }
 
     @OnClick(R.id.btn_settings)
     fun onSettingsBtnClicked() {
-        mStartPresenter?.onSettingsBtnClicked()
+        mStartPresenter.onSettingsBtnClicked()
     }
-
-    companion object {
-        private val TAG = StartActivity::class.java.simpleName
-    }
-
 }

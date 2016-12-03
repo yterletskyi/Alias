@@ -21,9 +21,6 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
     @BindView(R.id.text_cur_team_wins)
     lateinit var mCurrentTeamWinsTxtView: TextView
 
-    @BindView(R.id.text_cur_team_draws)
-    lateinit var mCurrentTeamDrawsTxtView: TextView
-
     @BindView(R.id.text_team_name_current)
     lateinit var mCurrentTeamNameTxtView: TextView
 
@@ -53,12 +50,8 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
         mTeamsRecyclerView.adapter = adapter
     }
 
-    override fun setWins(winScores: Int) {
+    override fun setScores(winScores: Int) {
         mCurrentTeamWinsTxtView.text = winScores.toString()
-    }
-
-    override fun setDraws(drawScores: Int) {
-        mCurrentTeamDrawsTxtView.text = drawScores.toString()
     }
 
     override fun getGame(): Game {

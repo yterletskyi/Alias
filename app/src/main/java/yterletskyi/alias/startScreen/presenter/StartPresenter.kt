@@ -1,5 +1,7 @@
 package yterletskyi.alias.startScreen.presenter
 
+import yterletskyi.alias.roundScreen.view.RoundActivity
+import yterletskyi.alias.settingsScreen.view.SettingsActivity
 import yterletskyi.alias.startScreen.view.StartView
 
 /**
@@ -9,12 +11,16 @@ import yterletskyi.alias.startScreen.view.StartView
 class StartPresenter(private val mView: StartView) {
 
     fun onGameBtnClicked() {
-        mView.showGame()
+        mView.showActivity(RoundActivity::class.java, false)
     }
 
     fun onSettingsBtnClicked() {
-        mView.showSettings()
+        mView.showActivity(SettingsActivity::class.java, false)
     }
 
+    fun onStart() {
+        val game = mView.getAliasApp().game
+        game.teamManager.clearScores()
+    }
 
 }

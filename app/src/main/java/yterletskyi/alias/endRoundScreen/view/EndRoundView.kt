@@ -1,7 +1,6 @@
 package yterletskyi.alias.endRoundScreen.view
 
 import yterletskyi.alias.roundScreen.model.Game
-import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -13,9 +12,7 @@ interface EndRoundView {
 
     fun setupTeamsRecyclerView(adapter: TeamAdapter)
 
-    fun setWins(winScores: Int)
-
-    fun setDraws(drawScores: Int)
+    fun setScores(winScores: Int)
 
     fun startGameActivity()
 
