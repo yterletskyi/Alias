@@ -35,12 +35,12 @@ class SettingsPresenter(private val mView: SettingsView) {
         val totalSeconds = mGameConfigs!!.roundLengthSec
         val time = TimeFormatter().secondsToString(totalSeconds)
         mView.setTimeText(time)
-        mView.setTimeSeek(totalSeconds / Constants.TIME_STEP)
+        mView.setTimeSeek((totalSeconds / Constants.TIME_STEP) - 1)
     }
 
     private fun setupGameEndScore() {
         val score = mGameConfigs!!.gameFinishScore
-        mView.setScoreSeek(score / Constants.SCORE_STEP)
+        mView.setScoreSeek((score / Constants.SCORE_STEP) - 1)
         mView.setScoreText(score.toString())
     }
 

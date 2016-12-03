@@ -23,11 +23,19 @@ class GamePreferences(sharedPreferences: SharedPreferences) {
     }
 
     fun getFinishScore(): Int {
-        return mPrefManager.getInt(GAME_FINISH_SCORE_KEY)
+        var scores = mPrefManager.getInt(GAME_FINISH_SCORE_KEY)
+        if (scores == 0) {
+            scores = Constants.SCORE_STEP
+        }
+        return scores
     }
 
     fun getRoundTime(): Int {
-        return mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
+        var time = mPrefManager.getInt(ROUND_TIME_LENGTH_KEY)
+        if (time == 0) {
+            time = Constants.TIME_STEP
+        }
+        return time
     }
 
     fun getTeamSaver(): TeamSaver {
