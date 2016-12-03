@@ -1,6 +1,7 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
 import yterletskyi.alias.roundScreen.model.GamePreferences
+import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamAdapter
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -8,7 +9,7 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 interface SetupTeamsView {
 
-    fun setupRecyclerView(adapter: TeamAdapter)
+    fun setupRecyclerView(adapter: SetupTeamAdapter)
 
     fun showAddTeamDialog(addTeamDialog: AddTeamDialog)
 

@@ -11,7 +11,7 @@ import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsView
  */
 class SetupTeamsPresenter(val mView: SetupTeamsView) : OnAddTeamListener {
 
-    private var mAdapter: TeamAdapter? = null
+    private var mAdapter: SetupTeamAdapter? = null
     private var mTeams: MutableList<Team>? = null
 
     fun onCreate() {
@@ -25,7 +25,7 @@ class SetupTeamsPresenter(val mView: SetupTeamsView) : OnAddTeamListener {
     }
 
     private fun populateTeamsRecyclerView() {
-        mAdapter = TeamAdapter(mTeams!!)
+        mAdapter = SetupTeamAdapter(mTeams!!)
         mView.setupRecyclerView(mAdapter!!)
     }
 

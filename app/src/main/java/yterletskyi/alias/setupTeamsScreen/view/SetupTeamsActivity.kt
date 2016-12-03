@@ -11,8 +11,8 @@ import butterknife.OnClick
 import yterletskyi.alias.R
 import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.model.SimpleItemTouchHelperCallback
+import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamAdapter
 import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamsPresenter
-import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
 
@@ -25,7 +25,7 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         mPresenter.onCreate()
     }
 
-    override fun setupRecyclerView(adapter: TeamAdapter) {
+    override fun setupRecyclerView(adapter: SetupTeamAdapter) {
         val recyclerView = findViewById(R.id.recycler_view_teams) as RecyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
