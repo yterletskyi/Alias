@@ -5,6 +5,9 @@ package yterletskyi.alias.roundScreen.model
  */
 class Round(lengthSeconds: Int, listener: OnRoundTimeListener) {
 
+    var wins: Int = 0
+    var draws: Int = 0
+
     private var mTimer = object : MyTimer(lengthSeconds * 1000L) {
 
         override fun onTick(secLeft: Int) {

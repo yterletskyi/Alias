@@ -31,6 +31,8 @@ class Game(teams: MutableList<Team>, val words: Words) : OnRoundTimeListener {
     }
 
     override fun onRoundEnded() {
+        teamManager.currentTeam.winScores += mRound!!.wins
+        teamManager.currentTeam.drawScores += mRound!!.draws
         onRoundEndListener!!.onRoundEnded()
     }
 
@@ -39,10 +41,12 @@ class Game(teams: MutableList<Team>, val words: Words) : OnRoundTimeListener {
     }
 
     fun answerCorrect(): Int {
-        return ++teamManager.currentTeam.winScores
+        return ++mRound!!.wins
+//        return ++teamManager.currentTeam.winScores
     }
 
     fun answerWrong(): Int {
-        return ++teamManager.currentTeam.drawScores
+        return ++mRound!!.draws
+//        return ++teamManager.currentTeam.drawScores
     }
 }
