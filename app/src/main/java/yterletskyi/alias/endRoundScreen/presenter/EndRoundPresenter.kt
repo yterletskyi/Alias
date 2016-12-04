@@ -40,6 +40,7 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     }
 
     fun nextRound() {
+        mGame.teamManager.nextTeam()
         showGameActivity()
     }
 

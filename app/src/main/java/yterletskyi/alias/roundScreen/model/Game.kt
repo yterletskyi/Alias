@@ -32,7 +32,6 @@ class Game(teams: MutableList<Team>, val words: Words) : OnRoundTimeListener {
 
     override fun onRoundEnded() {
         onRoundEndListener!!.onRoundEnded()
-        teamManager.nextTeam()
     }
 
     override fun onSecondElapsed(time: Int) {
