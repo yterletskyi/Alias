@@ -8,11 +8,7 @@ import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
  */
 interface EndRoundView {
 
-    fun setTextViewText(text: String)
-
     fun setupTeamsRecyclerView(adapter: TeamAdapter)
-
-    fun setScores(winScores: Int)
 
     fun startGameActivity()
 

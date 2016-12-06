@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_game_finish"
+    android:id="@+id/activity_end_round"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="yterletskyi.alias.gameFinishScreen.view.GameFinishActivity">
+    tools:context=".endRoundScreen.view.EndRoundActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linear_layout1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_team_name_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holo"
+            android:textColor="@color/black"
+            android:textSize="30sp"/>
+
+        <Space
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_cur_team_wins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:text="1"
+            android:textColor="@color/correct_answer_btn"
+            android:textSize="30sp"/>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_teams"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/linear_layout1"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@+id/btn_next_round"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout1"/>
+
+    <Button
+        android:id="@+id/btn_next_round"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/next_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</android.support.constraint.ConstraintLayout>
