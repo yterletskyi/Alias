@@ -26,7 +26,7 @@ interface RoundView {
 
     fun setWinScore(wins: String)
 
-    fun openEndRoundDialog(teamsArrayList: MutableList<Team>)
+    fun openEndRoundDialog(teamsArrayList: MutableList<Team>, currentTeamIndex: Int)
 
     fun showOptionItem()
 

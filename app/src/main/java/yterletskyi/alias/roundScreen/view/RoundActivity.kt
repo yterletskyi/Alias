@@ -119,8 +119,8 @@ class RoundActivity : AppCompatActivity(), RoundView {
         findViewById(R.id.btn_not_correct_answer).isEnabled = false
     }
 
-    override fun openEndRoundDialog(teamsArrayList: MutableList<Team>) {
-        val dialog = EndRoundDialog(this, teamsArrayList)
+    override fun openEndRoundDialog(teamsArrayList: MutableList<Team>, currentTeamIndex: Int) {
+        val dialog = EndRoundDialog(this, teamsArrayList, currentTeamIndex)
         dialog.teamSelectListener = mPresenter
         dialog.show()
     }

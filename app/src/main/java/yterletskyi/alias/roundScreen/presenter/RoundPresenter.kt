@@ -95,7 +95,10 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
         hidePauseButton()
         disableUi()
         mView.setTimerValue("0")
-        mView.openEndRoundDialog(mGame.teamManager.teams)
+        val teams = mGame.teamManager.teams
+        val currentTeam = mGame.teamManager.currentTeam
+        val currentTeamIndex = teams.indexOf(currentTeam)
+        mView.openEndRoundDialog(teams, currentTeamIndex)
     }
 
     override fun onTeamSelected(team: Team) {

@@ -16,9 +16,11 @@ class EndRoundDialog(context: Context) : Dialog(context), OnEndRoundTeamSelectLi
 
     lateinit var teamSelectListener: OnEndRoundTeamSelectListener
     private var mTeamList: MutableList<Team>? = null
+    private var mCurrentTeamIndex: Int = 0;
 
-    constructor(context: Context, teams: MutableList<Team>) : this(context) {
+    constructor(context: Context, teams: MutableList<Team>, currentTeamIndex: Int) : this(context) {
         mTeamList = teams
+        mCurrentTeamIndex = currentTeamIndex
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +30,7 @@ class EndRoundDialog(context: Context) : Dialog(context), OnEndRoundTeamSelectLi
 
         val recyclerView = findViewById(R.id.recycler_teams_end_round) as RecyclerView
 
-        val adapter = SimpleTeamsAdapter(mTeamList!!)
+        val adapter = SimpleTeamsAdapter(mTeamList!!, mCurrentTeamIndex)
         adapter.onEndRoundTeamSelectListener = this
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
