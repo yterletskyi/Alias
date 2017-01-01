@@ -27,7 +27,7 @@ class SimpleItemTouchHelperCallback(val mAdapter: ItemTouchHelperAdapter) : Item
     }
 
     override fun isItemViewSwipeEnabled(): Boolean {
-        return true
+        return mAdapter.isItemViewSwipeEnabled()
     }
 
     override fun isLongPressDragEnabled(): Boolean {

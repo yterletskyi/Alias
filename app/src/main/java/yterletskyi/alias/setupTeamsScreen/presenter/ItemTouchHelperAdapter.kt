@@ -13,4 +13,6 @@ interface ItemTouchHelperAdapter {
 
     fun onItemSwiped(viewHolder: RecyclerView.ViewHolder?, adapterPosition: Int)
 
+    fun isItemViewSwipeEnabled(): Boolean
+
 }

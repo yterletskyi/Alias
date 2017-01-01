@@ -24,7 +24,6 @@ class SetupTeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<Set
 
     override fun onBindViewHolder(holder: SetupTeamViewHolder?, position: Int) {
         val team = mTeams[position]
-
         holder!!.nameTxtView.text = team.name
     }
 
@@ -52,6 +51,10 @@ class SetupTeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<Set
     override fun onItemDismissed(position: Int) {
         mTeams.removeAt(position)
         notifyItemRemoved(position)
+    }
+
+    override fun isItemViewSwipeEnabled(): Boolean {
+        return mTeams.size > 2
     }
 
     class SetupTeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
