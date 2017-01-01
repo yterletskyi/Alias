@@ -1,13 +1,9 @@
 package yterletskyi.alias;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.renderscript.Double2;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import kotlin.NotImplementedError;
 
 /**
  * Created by yterletskyi on 01.01.17.
