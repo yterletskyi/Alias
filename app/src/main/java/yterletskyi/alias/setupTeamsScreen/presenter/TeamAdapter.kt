@@ -1,5 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.presenter
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
+import yterletskyi.alias.AutoColorTextView
 import yterletskyi.alias.R
 import yterletskyi.alias.roundScreen.model.Team
 import java.util.*
@@ -36,7 +38,7 @@ class TeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<TeamAdap
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         @BindView(R.id.text_wins)
-        lateinit var winsTxtView: TextView
+        lateinit var winsTxtView: AutoColorTextView
 
         @BindView(R.id.text_team_complex_name)
         lateinit var nameTxtView: TextView
