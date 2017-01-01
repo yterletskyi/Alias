@@ -16,7 +16,7 @@ import yterletskyi.alias.roundScreen.model.Team
 /**
  * Created by yterletskyi on 15.11.16.
  */
-class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerView.Adapter<RecyclerView.ViewHolder?>(), View.OnClickListener {
+class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
 
     lateinit var onEndRoundTeamSelectListener: OnEndRoundTeamSelectListener
 
@@ -30,7 +30,6 @@ class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerVi
             }
         } else {
             val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_team_simple_none, parent, false)
-            view.setOnClickListener(this)
             holder = NoneTeamSimpleViewHolder(view)
             holder.rootLinearLayout.setOnClickListener {
                 onEndRoundTeamSelectListener.onNoneSelected()
@@ -59,10 +58,6 @@ class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerVi
         } else {
             return 1
         }
-    }
-
-    override fun onClick(v: View?) {
-
     }
 
     class TeamSimpleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
