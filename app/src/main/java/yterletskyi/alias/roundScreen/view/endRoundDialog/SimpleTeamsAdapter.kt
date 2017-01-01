@@ -23,13 +23,13 @@ class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerVi
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
         val holder: RecyclerView.ViewHolder
         if (viewType == 1) {
-            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_team_simple, null)
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_team_simple, parent, false)
             holder = TeamSimpleViewHolder(view)
             holder.rootRelativeLayout.setOnClickListener {
                 onEndRoundTeamSelectListener.onTeamSelected(mTeamsList[holder.adapterPosition])
             }
         } else {
-            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_team_simple_none, null)
+            val view = LayoutInflater.from(parent!!.context).inflate(R.layout.item_team_simple_none, parent, false)
             view.setOnClickListener(this)
             holder = NoneTeamSimpleViewHolder(view)
             holder.rootLinearLayout.setOnClickListener {
