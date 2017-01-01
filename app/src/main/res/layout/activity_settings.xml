@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_settings"
@@ -17,10 +16,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/button_accent"
         android:text="Setup teams"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <SeekBar
         android:id="@+id/seek_score"
@@ -30,7 +31,7 @@
         android:progress="9"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
@@ -39,7 +40,7 @@
         android:layout_marginTop="32dp"
         android:text="Scores:"
         app:layout_constraintTop_toBottomOf="@+id/seek_time"
-        tools:layout_editor_absoluteX="0dp"/>
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -48,7 +49,7 @@
         android:layout_marginTop="16dp"
         android:text="Time:"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/seek_time"
@@ -59,7 +60,7 @@
         android:progress="3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/text_score"
@@ -70,7 +71,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/seek_score"
         app:layout_constraintRight_toRightOf="@+id/seek_score"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/text_time"
@@ -79,6 +80,6 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintLeft_toLeftOf="@+id/seek_time"
-        app:layout_constraintRight_toRightOf="@+id/seek_time"/>
+        app:layout_constraintRight_toRightOf="@+id/seek_time" />
 
 </android.support.constraint.ConstraintLayout>
