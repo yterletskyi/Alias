@@ -1,5 +1,6 @@
 package yterletskyi.alias.endRoundScreen.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +12,6 @@ import yterletskyi.alias.ActivityStarter
 import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
 import yterletskyi.alias.endRoundScreen.presenter.EndRoundPresenter
-import yterletskyi.alias.roundScreen.model.Game
 import yterletskyi.alias.roundScreen.view.RoundActivity
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
@@ -39,11 +39,11 @@ class EndRoundActivity : AppCompatActivity(), EndRoundView {
         mTeamsRecyclerView.adapter = adapter
     }
 
-    override fun getGame(): Game {
-        return (application as AliasApp).game
+    override fun getAliasApp(): AliasApp {
+        return application as AliasApp
     }
 
-    override fun startGameActivity() {
+    override fun showActivity(activity: Class<out Activity>, finishThis: Boolean) {
         ActivityStarter().start(this, RoundActivity::class.java, true)
     }
 }

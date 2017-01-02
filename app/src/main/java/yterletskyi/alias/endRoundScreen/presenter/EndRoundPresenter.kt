@@ -2,6 +2,7 @@ package yterletskyi.alias.endRoundScreen.presenter
 
 import yterletskyi.alias.endRoundScreen.view.EndRoundView
 import yterletskyi.alias.roundScreen.model.Game
+import yterletskyi.alias.roundScreen.view.RoundActivity
 import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
@@ -12,7 +13,7 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     private lateinit var mGame: Game
 
     fun onCreate() {
-        mGame = mView.getGame()
+        mGame = mView.getAliasApp().game
         setupTeamsRecyclerView()
     }
 
@@ -27,6 +28,6 @@ class EndRoundPresenter(private val mView: EndRoundView) {
     }
 
     private fun showGameActivity() {
-        mView.startGameActivity()
+        mView.showActivity(RoundActivity::class.java, true)
     }
 }
