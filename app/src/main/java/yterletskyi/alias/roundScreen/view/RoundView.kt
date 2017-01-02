@@ -37,4 +37,8 @@ interface RoundView {
     fun showScreen(screen: Class<out Activity>)
 
     fun startProgressBarAnimation(roundLengthSeconds: Int)
+
+    fun resumeProgressBarAnimtaion()
+
+    fun pauseProgressBarAnimation()
 }

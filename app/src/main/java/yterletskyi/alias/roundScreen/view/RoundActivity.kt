@@ -45,7 +45,11 @@ class RoundActivity : AppCompatActivity(), RoundView {
     @BindView(R.id.activity_game)
     lateinit var mRootLayout: ConstraintLayout
 
-    lateinit var mMenu: Menu
+    private lateinit var mMenu: Menu
+
+    private var mTimerProgressBarAnimation: ObjectAnimator? = null
+    private var mCurrentPlayTime: Long = 0
+
 
     val mPresenter: RoundPresenter = RoundPresenter(this)
 
@@ -109,10 +113,20 @@ class RoundActivity : AppCompatActivity(), RoundView {
     }
 
     override fun startProgressBarAnimation(roundLengthSeconds: Int) {
-        val animation = ObjectAnimator.ofInt(mTimeProgressBar, "progress", 0, 1000)
-        animation.duration = (roundLengthSeconds * 1000).toLong()
-        animation.interpolator = LinearInterpolator()
-        animation.start()
+        mTimerProgressBarAnimation = ObjectAnimator.ofInt(mTimeProgressBar, "progress", 0, 1000)
+        mTimerProgressBarAnimation!!.duration = (roundLengthSeconds * 1000).toLong()
+        mTimerProgressBarAnimation!!.interpolator = LinearInterpolator()
+        mTimerProgressBarAnimation!!.start()
+    }
+
+    override fun resumeProgressBarAnimtaion() {
+        mTimerProgressBarAnimation!!.currentPlayTime = mCurrentPlayTime
+        mTimerProgressBarAnimation!!.start()
+    }
+
+    override fun pauseProgressBarAnimation() {
+        mCurrentPlayTime = mTimerProgressBarAnimation!!.currentPlayTime
+        mTimerProgressBarAnimation!!.cancel()
     }
 
     override fun enableButtons() {

@@ -127,11 +127,13 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
 
     fun pause() {
         disableUi()
+        mView.pauseProgressBarAnimation()
         mGame.pause()
     }
 
     fun resume() {
         enableUi()
+        mView.resumeProgressBarAnimtaion()
         mGame.resume()
     }
 
