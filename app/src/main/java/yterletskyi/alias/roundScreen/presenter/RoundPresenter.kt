@@ -27,7 +27,6 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
 
     private fun setupProgressBarAndTimer() {
         val roundLength = mGame.gameConfigs!!.roundLengthSec
-        mView.setMaxTimeProgressBarValue(roundLength)
         val roundLengthStr = TimeFormatter().secondsToString(roundLength)
         mView.setTimerValue(roundLengthStr)
     }
@@ -44,7 +43,13 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
         setWord()
         enableUi()
         showPauseButton()
+        startProgressBarAnimation()
         mGame.startWithNewRound()
+    }
+
+    private fun startProgressBarAnimation() {
+        val roundLengthSec = mGame.gameConfigs!!.roundLengthSec
+        mView.startProgressBarAnimation(roundLengthSec)
     }
 
     fun hidePauseButton() {
@@ -83,11 +88,6 @@ class RoundPresenter(val mView: RoundView) : OnRoundTimeListener, OnEndRoundTeam
     override fun onSecondElapsed(time: Int) {
         val timeStr = TimeFormatter().secondsToString(time)
         mView.setTimerValue(timeStr)
-        setProgressBarValue(time)
-    }
-
-    private fun setProgressBarValue(time: Int) {
-        mView.changeProgressBarValue(mGame.gameConfigs!!.roundLengthSec - time)
     }
 
     override fun onRoundEnded() {

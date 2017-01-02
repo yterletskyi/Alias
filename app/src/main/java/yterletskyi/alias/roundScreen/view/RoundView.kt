@@ -32,11 +32,9 @@ interface RoundView {
 
     fun hideOptionItem()
 
-    fun setMaxTimeProgressBarValue(value: Int)
-
-    fun changeProgressBarValue(time: Int)
-
     fun getGame(): Game
 
     fun showScreen(screen: Class<out Activity>)
+
+    fun startProgressBarAnimation(roundLengthSeconds: Int)
 }

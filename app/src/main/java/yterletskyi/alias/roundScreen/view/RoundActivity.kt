@@ -1,5 +1,6 @@
 package yterletskyi.alias.roundScreen.view
 
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.os.Bundle
 import android.support.annotation.IdRes
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
+import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
 import butterknife.BindView
@@ -21,6 +23,7 @@ import yterletskyi.alias.roundScreen.model.Game
 import yterletskyi.alias.roundScreen.model.Team
 import yterletskyi.alias.roundScreen.presenter.RoundPresenter
 import yterletskyi.alias.roundScreen.view.endRoundDialog.EndRoundDialog
+
 
 class RoundActivity : AppCompatActivity(), RoundView {
 
@@ -61,10 +64,6 @@ class RoundActivity : AppCompatActivity(), RoundView {
 
     override fun setupActionBarTitle(teamName: String) {
         supportActionBar!!.title = teamName
-    }
-
-    override fun setMaxTimeProgressBarValue(value: Int) {
-        mTimeProgressBar.max = value
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
@@ -109,6 +108,13 @@ class RoundActivity : AppCompatActivity(), RoundView {
         mPresenter.answerWrong()
     }
 
+    override fun startProgressBarAnimation(roundLengthSeconds: Int) {
+        val animation = ObjectAnimator.ofInt(mTimeProgressBar, "progress", 0, 1000)
+        animation.duration = (roundLengthSeconds * 1000).toLong()
+        animation.interpolator = LinearInterpolator()
+        animation.start()
+    }
+
     override fun enableButtons() {
         findViewById(R.id.btn_correct_answer).isEnabled = true
         findViewById(R.id.btn_not_correct_answer).isEnabled = true
@@ -127,10 +133,6 @@ class RoundActivity : AppCompatActivity(), RoundView {
 
     override fun setTimerValue(time: String) {
         mTimerValueText.text = time
-    }
-
-    override fun changeProgressBarValue(time: Int) {
-        mTimeProgressBar.progress = time
     }
 
     override fun setDrawScore(draws: String) {
