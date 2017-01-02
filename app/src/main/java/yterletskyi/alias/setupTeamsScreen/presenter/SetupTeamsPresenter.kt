@@ -15,13 +15,13 @@ class SetupTeamsPresenter(val mView: SetupTeamsView) : OnAddTeamListener {
     private var mTeams: MutableList<Team>? = null
 
     fun onCreate() {
-        getTeams()
+        setupTeams()
         populateTeamsRecyclerView()
     }
 
-    private fun getTeams() {
-        val teamSaver = mView.getGamePreferences().getTeamSaver()
-        mTeams = teamSaver.getTeams()
+    private fun setupTeams() {
+        val application = mView.getAliasApp()
+        mTeams = application.game.teamManager.teams
     }
 
     private fun populateTeamsRecyclerView() {

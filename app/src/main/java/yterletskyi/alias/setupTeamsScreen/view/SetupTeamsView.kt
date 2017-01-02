@@ -1,13 +1,13 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
+import yterletskyi.alias.BaseView
 import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.presenter.SetupTeamAdapter
-import yterletskyi.alias.setupTeamsScreen.presenter.TeamAdapter
 
 /**
  * Created by yterletskyi on 21.11.16.
  */
-interface SetupTeamsView {
+interface SetupTeamsView : BaseView {
 
     fun setupRecyclerView(adapter: SetupTeamAdapter)
 

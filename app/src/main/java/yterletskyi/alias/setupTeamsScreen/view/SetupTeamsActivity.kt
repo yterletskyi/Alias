@@ -1,5 +1,6 @@
 package yterletskyi.alias.setupTeamsScreen.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import butterknife.ButterKnife
 import butterknife.OnClick
+import yterletskyi.alias.AliasApp
 import yterletskyi.alias.R
 import yterletskyi.alias.roundScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.model.SimpleItemTouchHelperCallback
@@ -46,6 +48,13 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
 
     override fun showAddTeamDialog(addTeamDialog: AddTeamDialog) {
         addTeamDialog.show(supportFragmentManager, "addTeamDialog")
+    }
+
+    override fun getAliasApp(): AliasApp {
+        return application as AliasApp
+    }
+
+    override fun showActivity(activity: Class<out Activity>, finishThis: Boolean) {
     }
 
     override fun onDestroy() {
