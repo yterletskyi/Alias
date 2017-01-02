@@ -17,8 +17,13 @@ class TeamManager(val teams: MutableList<Team>) {
     }
 
     fun getLeadingTeam(): Team {
-        teams.sortByDescending { it.winScores }
-        return teams[0]
+        var bestTeam = teams[0]
+        for (team in teams) {
+            if (team.winScores > bestTeam.winScores) {
+                bestTeam = team
+            }
+        }
+        return bestTeam
     }
 
     fun clearScores() {

@@ -1,6 +1,5 @@
 package yterletskyi.alias.setupTeamsScreen.presenter
 
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import butterknife.ButterKnife
 import yterletskyi.alias.AutoColorTextView
 import yterletskyi.alias.R
 import yterletskyi.alias.roundScreen.model.Team
-import java.util.*
 
 
 /**
