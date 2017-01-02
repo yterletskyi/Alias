@@ -9,6 +9,18 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context=".endRoundScreen.view.EndRoundActivity">
 
+    <TextView
+        android:id="@+id/text_this_round_stats"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/this_round_stats"
+        android:textColor="@color/black"/>
+
     <Button
         android:id="@+id/btn_next_round"
         android:layout_width="match_parent"
@@ -24,8 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/btn_next_round"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/text_this_round_stats"
         android:overScrollMode="never"/>
 
 </RelativeLayout>
