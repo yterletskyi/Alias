@@ -13,7 +13,7 @@ class StartActivity : AppCompatActivity() {
 
         val startView = StartFragment.newInstance()
         startView.presenter = StartPresenter(startView)
-        replaceFragmentInActivity(startView, R.id.contentFrame)
+        replaceFragmentInActivity(startView, R.id.contentFrameStart)
 
     }
 

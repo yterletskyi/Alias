@@ -19,7 +19,7 @@ class Game(gamePreferences: GamePreferences, words: Array<String>) : OnRoundTime
     private fun setupTeams() {
         val teamSaver = mGamePreferences.getTeamSaver()
         teamsArrayList = teamSaver.getTeams()
-        mCurrentTeam = teamsArrayList.get(0)
+        mCurrentTeam = teamsArrayList[0]
     }
 
     fun start() {

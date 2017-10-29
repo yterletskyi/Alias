@@ -1,21 +1,19 @@
 package yterletskyi.alias.gameScreen.presenter
 
 import yterletskyi.alias.R
-import yterletskyi.alias.util.TimeFormatter
+import yterletskyi.alias.gameScreen.GameContract
 import yterletskyi.alias.gameScreen.model.Game
-import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
-import yterletskyi.alias.gameScreen.model.OnRoundTimeListener
 import yterletskyi.alias.gameScreen.model.Team
-import yterletskyi.alias.gameScreen.view.GameView
+import yterletskyi.alias.util.TimeFormatter
 
 /**
  * Created by yterletskyi on 13.11.16.
  */
-class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSelectListener {
+class GamePresenter(private val mView: GameContract.View) : GameContract.Presenter {
 
     private lateinit var mGame: Game
 
-    fun onCreate() {
+    override fun start() {
         mGame = Game(mView.getGamePreferences(), mView.getResArray(R.array.words))
         mGame.onRoundEndListener = this
         mView.showSnackbar(R.string.tap_to_start, R.string.start)
@@ -26,18 +24,18 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
         mView.setTimerValue(roundLengthStr)
     }
 
-    fun startGame() {
+    override fun startGame() {
         setWord()
         enableUi()
         showPauseButton()
         mGame.start()
     }
 
-    fun hidePauseButton() {
+    private fun hidePauseButton() {
         mView.hideOptionItem()
     }
 
-    fun showPauseButton() {
+    private fun showPauseButton() {
         mView.showOptionItem()
     }
 
@@ -54,13 +52,13 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
         mView.disableButtons()
     }
 
-    fun answerCorrect() {
+    override fun answerCorrect() {
         val wins = mGame.correctAnswer()
         mView.setWinScore(wins.toString())
         setWord()
     }
 
-    fun answerWrong() {
+    override fun answerWrong() {
         val draws = mGame.wrongAnswer()
         mView.setDrawScore(draws.toString())
         setWord()
@@ -91,17 +89,18 @@ class GamePresenter(val mView: GameView) : OnRoundTimeListener, OnEndRoundTeamSe
 
     }
 
-    fun pause() {
+    override fun pause() {
         disableUi()
         mGame.pause()
     }
 
-    fun resume() {
+    override fun resume() {
         enableUi()
         mGame.resume()
     }
 
-    fun onStop() {
+    override fun stop() {
         mGame.stop()
     }
+
 }
