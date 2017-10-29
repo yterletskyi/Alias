@@ -16,15 +16,17 @@ import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
  */
 class AddTeamDialog : DialogFragment() {
 
+    private lateinit var mEditText: EditText;
     lateinit var onAddTeamListener: OnAddTeamListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.write_team_name)
+        mEditText = edit_text_team_name;
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_team, null)
         builder.setView(view)
         builder.setPositiveButton(android.R.string.ok, { dialogInterface, i ->
-            val text = edit_team_name.text.toString()
+            val text = mEditText.text.toString()
             onAddTeamListener.onTeamAdded(Team(text))
         })
         builder.setNegativeButton(android.R.string.cancel, { dialogInterface, i -> dismiss() })

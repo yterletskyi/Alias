@@ -1,8 +1,7 @@
-package yterletskyi.alias.settingsScreen.presenter
+package yterletskyi.alias.settingsScreen
 
 import yterletskyi.alias.util.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Constants
-import yterletskyi.alias.settingsScreen.view.SettingsView
 
 /**
  * Created by yterletskyi on 12.11.16.

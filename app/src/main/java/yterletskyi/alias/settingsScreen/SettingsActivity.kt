@@ -1,4 +1,4 @@
-package yterletskyi.alias.settingsScreen.view
+package yterletskyi.alias.settingsScreen
 
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -8,7 +8,6 @@ import android.widget.SeekBar
 import kotlinx.android.synthetic.main.activity_settings.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.GamePreferences
-import yterletskyi.alias.settingsScreen.presenter.SettingsPresenter
 import yterletskyi.alias.setupTeamsScreen.view.SetupTeamsActivity
 import yterletskyi.alias.util.ActivityStarter
 
@@ -20,6 +19,7 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         addActionBarUpButton()
+        btn_go_setup_teams.setOnClickListener({ mPresenter.showSetupTeamsScreen() })
         mPresenter.onCreate()
         seek_score.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -57,11 +57,6 @@ class SettingsActivity : AppCompatActivity(), SettingsView {
         }
         return false
     }
-
-//    @OnClick(R.id.btn_go_setup_teams)
-//    fun onSetupTeamsBtnClicked() {
-//        mPresenter.showSetupTeamsScreen()
-//    }
 
     override fun showSetupTeamsScreen() {
         ActivityStarter().start(this, SetupTeamsActivity::class.java, false)

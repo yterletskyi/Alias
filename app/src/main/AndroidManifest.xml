@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".settingsScreen.view.SettingsActivity">
+        <activity android:name=".settingsScreen.SettingsActivity">
         </activity>
         <activity android:name=".gameScreen.view.GameActivity">
         </activity>

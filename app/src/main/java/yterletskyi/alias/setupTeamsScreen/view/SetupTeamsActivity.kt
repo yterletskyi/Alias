@@ -19,6 +19,7 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup_teams)
+        btn_add_team.setOnClickListener({ mPresenter.addTeam() })
         mPresenter.onCreate()
     }
 
@@ -34,11 +35,6 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         return GamePreferences(sharedPrefs)
     }
-
-//    @OnClick(R.id.btn_add_team)
-//    fun addTeam() {
-//        mPresenter.addTeam()
-//    }
 
     override fun showAddTeamDialog(addTeamDialog: AddTeamDialog) {
         addTeamDialog.show(supportFragmentManager, "addTeamDialog")

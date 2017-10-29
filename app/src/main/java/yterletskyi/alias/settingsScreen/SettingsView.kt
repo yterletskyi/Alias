@@ -1,4 +1,4 @@
-package yterletskyi.alias.settingsScreen.view
+package yterletskyi.alias.settingsScreen
 
 import yterletskyi.alias.gameScreen.model.GamePreferences
 

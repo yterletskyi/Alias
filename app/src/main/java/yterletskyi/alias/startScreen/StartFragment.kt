@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_start.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.view.GameActivity
-import yterletskyi.alias.settingsScreen.view.SettingsActivity
+import yterletskyi.alias.settingsScreen.SettingsActivity
 import yterletskyi.alias.util.ActivityStarter
 
 
