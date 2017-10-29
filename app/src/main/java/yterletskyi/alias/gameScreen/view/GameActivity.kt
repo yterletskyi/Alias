@@ -2,18 +2,14 @@ package yterletskyi.alias.gameScreen.view
 
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.support.annotation.IdRes
-import android.support.constraint.ConstraintLayout
+import android.support.annotation.AnimRes
+import android.support.annotation.ArrayRes
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
-import android.widget.ProgressBar
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_game.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.gameScreen.model.Team
@@ -22,24 +18,6 @@ import yterletskyi.alias.gameScreen.view.endRoundDialog.EndRoundDialog
 
 class GameActivity : AppCompatActivity(), GameView {
 
-    @BindView(R.id.progressBar)
-    lateinit var mTimeProgressBar: ProgressBar
-
-    @BindView(R.id.text_win_score)
-    lateinit var mWinScoreText: TextView
-
-    @BindView(R.id.text_draw_score)
-    lateinit var mDrawScoreText: TextView
-
-    @BindView(R.id.text_timer_value)
-    lateinit var mTimerValueText: TextView
-
-    @BindView(R.id.text_word)
-    lateinit var mWordTxtView: TextView
-
-    @BindView(R.id.activity_game)
-    lateinit var mRootLayout: ConstraintLayout
-
     lateinit var mMenu: Menu
 
     val mPresenter: GamePresenter = GamePresenter(this)
@@ -47,12 +25,11 @@ class GameActivity : AppCompatActivity(), GameView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        ButterKnife.bind(this)
         mPresenter.onCreate()
     }
 
     override fun showSnackbar(descrResId: Int, actionResId: Int) {
-        Snackbar.make(mRootLayout, descrResId, Snackbar.LENGTH_INDEFINITE).setAction(actionResId, {
+        Snackbar.make(activity_game, descrResId, Snackbar.LENGTH_INDEFINITE).setAction(actionResId, {
             mPresenter.startGame()
         }).show()
     }
@@ -62,7 +39,7 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun setMaxTimeProgressBarValue(value: Int) {
-        mTimeProgressBar.max = value
+        progressBar.max = value
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
@@ -92,30 +69,38 @@ class GameActivity : AppCompatActivity(), GameView {
         return false
     }
 
-    override fun setWord(word: String, @IdRes animId: Int) {
-        mWordTxtView.startAnimation(AnimationUtils.loadAnimation(this, animId))
-        mWordTxtView.text = word
-    }
-
-    @OnClick(R.id.btn_correct_answer)
-    fun onCorrectAnswer() {
-        mPresenter.answerCorrect()
-    }
-
-    @OnClick(R.id.btn_not_correct_answer)
-    fun onNotCorrectAnswer() {
-        mPresenter.answerWrong()
+    override fun setWord(word: String, @AnimRes animId: Int) {
+        text_word.startAnimation(AnimationUtils.loadAnimation(this, animId))
+        text_word.text = word
     }
 
     override fun enableButtons() {
-        findViewById(R.id.btn_correct_answer).isEnabled = true
-        findViewById(R.id.btn_not_correct_answer).isEnabled = true
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun disableButtons() {
-        findViewById(R.id.btn_correct_answer).isEnabled = false
-        findViewById(R.id.btn_not_correct_answer).isEnabled = false
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    //    @OnClick(R.id.btn_correct_answer)
+//    fun onCorrectAnswer() {
+//        mPresenter.answerCorrect()
+//    }
+//
+//    @OnClick(R.id.btn_not_correct_answer)
+//    fun onNotCorrectAnswer() {
+//        mPresenter.answerWrong()
+//    }
+
+//    override fun enableButtons() {
+//        findViewById(R.id.btn_correct_answer).isEnabled = true
+//        findViewById(R.id.btn_not_correct_answer).isEnabled = true
+//    }
+//
+//    override fun disableButtons() {
+//        findViewById(R.id.btn_correct_answer).isEnabled = false
+//        findViewById(R.id.btn_not_correct_answer).isEnabled = false
+//    }
 
     override fun openEndRoundDialog(teamsArrayList: MutableList<Team>) {
         val dialog = EndRoundDialog(this, teamsArrayList)
@@ -124,19 +109,19 @@ class GameActivity : AppCompatActivity(), GameView {
     }
 
     override fun setTimerValue(time: String) {
-        mTimerValueText.text = time
+        text_timer_value.text = time
     }
 
     override fun changeProgressBarValue(time: Int) {
-        mTimeProgressBar.progress = time
+        progressBar.progress = time
     }
 
     override fun setDrawScore(draws: String) {
-        mDrawScoreText.text = draws
+        text_draw_score.text = draws
     }
 
     override fun setWinScore(wins: String) {
-        mWinScoreText.text = wins
+        text_win_score.text = wins
     }
 
     override fun showOptionItem() {
@@ -147,7 +132,7 @@ class GameActivity : AppCompatActivity(), GameView {
         mMenu.findItem(R.id.item_menu_pause).isVisible = false
     }
 
-    override fun getResArray(resId: Int): Array<String> {
+    override fun getResArray(@ArrayRes resId: Int): Array<String> {
         return resources.getStringArray(resId)
     }
 

@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import butterknife.ButterKnife
-import butterknife.OnClick
+import kotlinx.android.synthetic.main.activity_setup_teams.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.GamePreferences
 import yterletskyi.alias.setupTeamsScreen.model.SimpleItemTouchHelperCallback
@@ -21,17 +19,15 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup_teams)
-        ButterKnife.bind(this)
         mPresenter.onCreate()
     }
 
     override fun setupRecyclerView(adapter: TeamAdapter) {
-        val recyclerView = findViewById(R.id.recycler_view_teams) as RecyclerView
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recycler_view_teams.adapter = adapter
+        recycler_view_teams.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val callback = SimpleItemTouchHelperCallback(adapter)
         val touchHelper = ItemTouchHelper(callback)
-        touchHelper.attachToRecyclerView(recyclerView)
+        touchHelper.attachToRecyclerView(recycler_view_teams)
     }
 
     override fun getGamePreferences(): GamePreferences {
@@ -39,10 +35,10 @@ class SetupTeamsActivity : AppCompatActivity(), SetupTeamsView {
         return GamePreferences(sharedPrefs)
     }
 
-    @OnClick(R.id.btn_add_team)
-    fun addTeam() {
-        mPresenter.addTeam()
-    }
+//    @OnClick(R.id.btn_add_team)
+//    fun addTeam() {
+//        mPresenter.addTeam()
+//    }
 
     override fun showAddTeamDialog(addTeamDialog: AddTeamDialog) {
         addTeamDialog.show(supportFragmentManager, "addTeamDialog")

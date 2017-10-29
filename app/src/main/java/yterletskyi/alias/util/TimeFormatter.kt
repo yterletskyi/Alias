@@ -1,4 +1,4 @@
-package yterletskyi.alias
+package yterletskyi.alias.util
 
 /**
  * Created by yterletskyi on 19.11.16.

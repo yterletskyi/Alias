@@ -4,8 +4,8 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.dialog_end_round.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.Team
@@ -27,12 +27,10 @@ class EndRoundDialog(context: Context) : Dialog(context), OnEndRoundTeamSelectLi
         setCancelable(false)
         setTitle(R.string.who_gets_the_word)
 
-        val recyclerView = findViewById(R.id.recycler_teams_end_round) as RecyclerView
-
         val adapter = SimpleTeamsAdapter(mTeamList!!)
         adapter.onEndRoundTeamSelectListener = this
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_teams_end_round.adapter = adapter
+        recycler_teams_end_round.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun onTeamSelected(team: Team) {

@@ -1,4 +1,4 @@
-package yterletskyi.alias
+package yterletskyi.alias.util
 
 import android.app.Activity
 import android.content.Intent

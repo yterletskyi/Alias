@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.Team
 import java.util.*
@@ -56,15 +54,10 @@ class TeamAdapter(val mTeams: MutableList<Team>) : RecyclerView.Adapter<TeamAdap
 
     class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @BindView(R.id.text_team_complex_name)
         lateinit var mTeamNameTxtView: TextView
 
-        @BindView(R.id.text_team_comples_undo)
         lateinit var mUndoTxtView: TextView
 
-        init {
-            ButterKnife.bind(this, view)
-        }
     }
 
 }

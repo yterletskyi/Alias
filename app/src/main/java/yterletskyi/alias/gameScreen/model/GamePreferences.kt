@@ -1,7 +1,7 @@
 package yterletskyi.alias.gameScreen.model
 
 import android.content.SharedPreferences
-import yterletskyi.alias.SharedPreferencesManager
+import yterletskyi.alias.util.SharedPreferencesManager
 
 /**
  * Created by yterletskyi on 15.11.16.

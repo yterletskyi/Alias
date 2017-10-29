@@ -1,4 +1,4 @@
-package yterletskyi.alias
+package yterletskyi.alias.util
 
 import android.content.SharedPreferences
 

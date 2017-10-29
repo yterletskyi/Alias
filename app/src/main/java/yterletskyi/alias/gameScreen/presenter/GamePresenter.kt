@@ -1,7 +1,7 @@
 package yterletskyi.alias.gameScreen.presenter
 
 import yterletskyi.alias.R
-import yterletskyi.alias.TimeFormatter
+import yterletskyi.alias.util.TimeFormatter
 import yterletskyi.alias.gameScreen.model.Game
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.OnRoundTimeListener

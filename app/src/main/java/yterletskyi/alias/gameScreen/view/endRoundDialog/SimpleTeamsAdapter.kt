@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.OnEndRoundTeamSelectListener
 import yterletskyi.alias.gameScreen.model.Team
@@ -67,34 +65,21 @@ class SimpleTeamsAdapter(private val mTeamsList: MutableList<Team>) : RecyclerVi
 
     class TeamSimpleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @BindView(R.id.relative_team_simple_root)
         lateinit var rootRelativeLayout: RelativeLayout
 
-        @BindView(R.id.text_team_simple_name)
         lateinit var teamNameTxtView: TextView
 
-        @BindView(R.id.text_team_simple_wins)
         lateinit var teamWinsTxtView: TextView
 
-        @BindView(R.id.text_team_simple_draws)
         lateinit var teamDrawsTxtView: TextView
 
-        init {
-            ButterKnife.bind(this, view)
-        }
     }
 
     class NoneTeamSimpleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @BindView(R.id.linear_none_root)
         lateinit var rootLinearLayout: LinearLayout
 
-        @BindView(R.id.text_team_simple_none)
         lateinit var noneTxtView: TextView
-
-        init {
-            ButterKnife.bind(this, view)
-        }
 
     }
 }

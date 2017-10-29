@@ -1,6 +1,6 @@
 package yterletskyi.alias.gameScreen.model
 
-import yterletskyi.alias.SharedPreferencesManager
+import yterletskyi.alias.util.SharedPreferencesManager
 
 /**
  * Created by yterletskyi on 14.11.16.

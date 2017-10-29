@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.EditText
+import kotlinx.android.synthetic.main.dialog_add_team.*
 import yterletskyi.alias.R
 import yterletskyi.alias.gameScreen.model.Team
 import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
@@ -13,7 +14,7 @@ import yterletskyi.alias.setupTeamsScreen.model.OnAddTeamListener
 /**
  * Created by yterletskyi on 25.11.16.
  */
-class AddTeamDialog() : DialogFragment() {
+class AddTeamDialog : DialogFragment() {
 
     lateinit var onAddTeamListener: OnAddTeamListener
 
@@ -23,8 +24,7 @@ class AddTeamDialog() : DialogFragment() {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_add_team, null)
         builder.setView(view)
         builder.setPositiveButton(android.R.string.ok, { dialogInterface, i ->
-            val textView = view!!.findViewById(R.id.edit_team_name) as EditText
-            val text = textView.text.toString()
+            val text = edit_team_name.text.toString()
             onAddTeamListener.onTeamAdded(Team(text))
         })
         builder.setNegativeButton(android.R.string.cancel, { dialogInterface, i -> dismiss() })
